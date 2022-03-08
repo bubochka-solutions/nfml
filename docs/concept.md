@@ -61,6 +61,25 @@ named-object {
 }
 ```
 
+Anonymous objects are written like this:
+
+```
+named-object {
+  anonymous: {
+    favourite-number: 69
+  }
+}
+```
+
+In languages with strict typing, named objects
+are class instances (classes should be predefined),
+and anonymous objects are generic NFML objects.
+
+In languages with weak typing, named and anonymous
+objects are both generic and have one difference:
+named objects after deserializarion have additional
+property `_class`.
+
 #### String
 
 The string is set of characters:
@@ -113,20 +132,7 @@ The string ends with ---. But the line
 must contain just ---, nothing more.
 ```
 
-But what if the string should be just an opening bracket `{`?
-
-It's OK:
-
-```
-{
-  key: {
-}
-```
-
-It's because the objects start after the character, which is not
-a colon `:`.
-
-But lists start from `[`, and arrays start from `[[`.
+Sometimes we need to start string from `{`, `[` or `[[`.
 In this case, you can indicate the value is the string
 with a `\` character:
 
@@ -136,6 +142,8 @@ with a `\` character:
   other-key: \[[ well)
 }
 ```
+
+In other words, it's a raw string.
 
 #### List
 

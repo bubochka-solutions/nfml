@@ -3,6 +3,12 @@ Table of contents
 - [NFML](#nfml)
   * [Usage](#usage)
   * [Syntax](#syntax)
+    - [Types](#types)
+      + [Object](#object)
+      + [String](#string)
+      + [List](#list)
+      + [Array](#array)
+  * [Examples](#examples)
 
 # NFML
 
@@ -39,46 +45,82 @@ The object is the set of keys and appropriate values:
 
 ```
 {
-  key_one: value one
-  key_two: The second value
+  key-one: value one
+  key-two: The second value
 }
 ```
 
-The key is always the string, which may contain only latin
-characters, underscores, dashes and numbers.
-The set of permitted keys is defined by NFML component rules.
+Objects in NFML always have classes:
+
+```
+class-name {
+
+}
+```
+
+Both class and key names may contain only lowercase
+letters and dashes between the letters (no more than
+one dash in row).
 
 The value type is one of any NFML type.
 
-The named objects are written like this:
+Another example of object:
 
 ```
-named-object {
+class-name {
   key: value
+
+  another-key: inner-object {
+    key: value
+  }
+
   inner-object {
     wow: nice
   }
 }
 ```
 
-Anonymous objects are written like this:
+In the example above, `class-name` is the top-level object.
+It contains 2 objects, which are instances of `inner-object` class.
 
+Note that part
 ```
-named-object {
-  anonymous: {
-    favourite-number: 69
+class-name {
+
+  ...
+
+  inner-object {
+    wow: nice
   }
 }
 ```
 
-In languages with strict typing, named objects
-are class instances (classes should be predefined),
-and anonymous objects are generic NFML objects.
+is a shorthand for:
 
-In languages with weak typing, named and anonymous
-objects are both generic and have one difference:
+```
+class-name {
+
+  ...
+
+  inner-object: inner-object {
+    wow: nice
+  }
+}
+```
+
+##### Implementation details
+
+In languages with strict typing, named objects
+are class instances (classes should be predefined).
+
+In languages with weak typing,
 named objects after deserializarion have additional
 property `_class`.
+
+Also: the parser will handle conversion of
+class names from kebab-case to PascalCase and
+properties from kebab-case to camelCase
+automatically.
 
 #### String
 
@@ -92,7 +134,7 @@ Strings are not enclosed with a special character.
 The whole string is contained between the key and a newline:
 
 ```
-{
+class-name {
   key: This is a one string. Don't you believe? ", `, ' -- nothing can stop it)
   other_key: oops... this is another string...
 }
@@ -107,7 +149,7 @@ long...
 string. Multiline string is invented for this case:
 
 ```
-{
+class-name {
   key: ---
   This is a one string. Don't you believe? ", `, ' -- nothing can stop it)
   Even a newline)
@@ -137,7 +179,7 @@ In this case, you can indicate the value is the string
 with a `\` character:
 
 ```
-{
+class-name {
   key: \[
   other-key: \[[ well)
 }
@@ -200,11 +242,14 @@ Arrays are containers for complex mulitline elements:
     label: You can't press me(
   }
 
-  This is a
+  ---
+  This is
   one element.
   Still the part of this element
+  ---
 
-  Oh, it's another element
+  This is another element
+  Oh, it's another one element
 
 ]]
 ```
@@ -212,10 +257,8 @@ Arrays are containers for complex mulitline elements:
 If the element is a container (object, list or array),
 it's ended of it's closing character.
 
-If the element is a string, it is ended on a void line
-(line, which may contain only whitespace).
-
-A multiline string can be a part of array.
+If the element is a string, elements are serparated with a newline
+unless this element is not a multiline string.
 
 
 #### Comment
@@ -225,7 +268,7 @@ Comment is not a type of data, but a useful part of NFML.
 It is started from a single character `#`:
 
 ```
-{
+class-name {
   key: Key value
   # This is not a part of the code.
 
@@ -235,5 +278,67 @@ It is started from a single character `#`:
   # This is a comment
   \# This is not a comment. This is a part of the string.
   ---
+}
+```
+
+## Examples
+
+It would be hard to imagine why do we need the
+language that slightly resembles KDL but contains
+less features... without examples.
+
+As it was already mentioned, this language is intentioned
+for describing UI, no more.
+
+So...
+
+```
+# Description of a PWA application
+
+# Main element holder
+document {
+
+  # Menu bar section
+  menu {
+    entries: [[
+      
+      # Settings section
+      section {
+        id: settings
+        label: Settings
+        entries: [[
+
+          # Theme settings
+          radio-group: {
+            id: color-theme
+            label: Color Theme
+            selections: [
+              Dark
+              Black
+              Another Theme For Developer
+            ]
+          }
+        ]]
+      }
+    ]]
+  }
+
+  body {
+    entries: [[
+      ---
+      Hello everyone!
+
+      # Comments are allowed to write here, lol
+      Welcome to this craze code example!
+      It holds much text, but parts should be separated
+      and everything should be constructed so that
+      \               it will be
+      \           easy
+      \         to
+      \     read
+      \this!      
+      ---
+    ]]
+  }
 }
 ```

@@ -8,6 +8,10 @@ Table of contents
       + [String](#string)
       + [List](#list)
       + [Array](#array)
+    - [Components](#components)
+      + [Component file structure](#component-file-structure)
+      + [Import statement](#import-statement)
+  * [NFML language restrictions](#nfml-language-restrictions)
   * [Examples](#examples)
 
 # NFML
@@ -228,9 +232,9 @@ Programmers used to fact that array indices start from 0.
 So the list elements are counted from 0 (so it's easier to
 write scripts).
 
-#### Arrays
+#### Array
 
-Arrays are containers for complex mulitline elements:
+Array is a container for complex mulitline elements:
 
 ```
 [[
@@ -281,6 +285,92 @@ class-name {
 }
 ```
 
+### Components
+
+This language would be not so useful if there wouldn't
+be an out-of-the-box feature to divide complex files into several.
+
+For example, you use menu panel, which is included into every webpage
+except several (normal situation, isn't it?)
+
+Well, it may look like this:
+
+```
+import components/menu-panel
+
+document {
+  menu-bar {
+    # an object may hold no properties
+    # unless it's necessary
+  }
+}
+```
+
+Looks clean, as for me.
+
+#### Component file structure
+
+Component file contains element which will be
+placed into file which imports the component:
+
+```
+### components/my-button.isml
+
+button {
+  id: button
+  class: working
+  label: Why are you starting? Push me!
+}
+```
+
+If you need to override a property in the file
+that import the compoment, place directive `@external`:
+
+```
+### components/my-button.isml
+
+button {
+  id: button
+  class: working
+  label: @external
+}
+```
+
+#### Import statement
+
+Import statement includes a component into NFML
+document:
+
+```
+### testfile.isml
+
+import components/my-button
+
+my-button {
+  # It will work if property `label` exists
+  # and it has `@external` directive
+  label: Hey, buddies! Guess, who has cool button? Yeah, it's me)
+}
+```
+
+Note that using a component does not require class implementation
+with the same name. Moreover, it's restricted.
+
+## NFML language restrictions
+
+* On the top level NFML may contain only one object (just like in JSON)
+* Object may be initialized only if class or component with the following name exist
+* Lists may contain only single-line strings
+* Object and key identifiers may be only kebab-case
+* You cannot create a class which has the same name as a component
+
+Actually, the language itself has not so much features.
+But it's intended for UI description, not for bustiness-logic)
+
+These restrictions will help to write more clean code, I hope.
+But! If you need more useful features - write issues on the repository,
+and authors will review them with pleasure.
+
 ## Examples
 
 It would be hard to imagine why do we need the
@@ -293,34 +383,42 @@ for describing UI, no more.
 So...
 
 ```
-# Description of a PWA application
+### menu/menu.isml
+
+element {
+  entries: [[
+    # Settings section
+    section {
+      id: settings
+      label: Settings
+      entries: [[
+
+        # Theme settings
+        radio-group: {
+          id: color-theme
+          label: Color Theme
+          selections: [
+            Dark
+            Black
+            Another Theme For Developer
+          ]
+        }
+      ]]
+    }
+  ]]
+}
+
+
+### main.isml
+
+# Import statements
+import menu/menu
 
 # Main element holder
 document {
 
   # Menu bar section
   menu {
-    entries: [[
-      
-      # Settings section
-      section {
-        id: settings
-        label: Settings
-        entries: [[
-
-          # Theme settings
-          radio-group: {
-            id: color-theme
-            label: Color Theme
-            selections: [
-              Dark
-              Black
-              Another Theme For Developer
-            ]
-          }
-        ]]
-      }
-    ]]
   }
 
   body {

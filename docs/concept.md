@@ -19,8 +19,9 @@ Table of contents
 NFML (Novice-Friendly Markup Language) is a interface
 layout markup language, aimed to be self-descriptive
 (understandable even for those who is not similliar with
-this language), easy to learn and use, featured and powerful
-language.
+this language), easy to learn and use, strict and powerful
+language, which has not so much features, but enough to create
+perfect UI.
 
 The serializer and deserializer will be implemented as a
 Nim modules. Later it can be easily implemented for any other

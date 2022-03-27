@@ -386,7 +386,8 @@ So...
 ```
 ### menu/menu.isml
 
-element {
+navigation {
+  class: @external
   entries: [[
     # Settings section
     section {
@@ -420,6 +421,7 @@ document {
 
   # Menu bar section
   menu {
+    class: menu-bar navigation-menu adaptive
   }
 
   body {

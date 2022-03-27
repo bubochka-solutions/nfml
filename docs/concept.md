@@ -300,7 +300,7 @@ Well, it may look like this:
 import components/menu-panel
 
 document {
-  menu-bar {
+  menu-panel {
     # an object may hold no properties
     # unless it's necessary
   }

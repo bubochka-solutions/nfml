@@ -4,6 +4,13 @@
 
 ### 0.0 version
 
+### 0.0.3
+
+* Implemented list parsing rule
+* Changed parseLine() contract
+* Fixed issue "only linefeed after ---" (now it accepts whitespace after ---)
+* Fixed single line string parsing (now it removes "\\" at beginning)
+
 ### 0.0.2
 
 * Implemented NFML tokens:

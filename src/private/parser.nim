@@ -6,6 +6,7 @@ import utils/string
 import grammar/nfmlToken
 
 var value = ""
+var lines: seq[string]
 
 let parser = peg "nfml":
   # Multiline part rules
@@ -16,21 +17,36 @@ let parser = peg "nfml":
     nfmlToken.multilineStringDelimeter
 
   # Multiline string rule
-  nfmlMultilineString <- nfmlToken.multilineStringDelimeter *
+  nfmlMultilineString <- nfmlToken.multilineStringDelimeter * *nfmlToken.spaceButLineFeed *
     +(nfmlMultilineStringLineBeginning * (nfmlToken.comment | >nfmlToken.line)) *
     nfmlMultilineEnd:
     # Rule handler
     value = ""
     for i, line in capture.capList:
       if i == 0: continue
-      value.add parseLine(line.s)
+      value.add parseLine(line.s, multilineMode = true)
 
   # String rule
   nfmlString <- >nfmlToken.line:
-    value = $1
+    value = parseLine($1)
+
+  # List part rules
+  nfmlListLineBeginning <- nfmlToken.lineFeed * *Space *
+    !(nfmlToken.listEnd * nfmlToken.lineFeed)
+
+  # List rule
+  nfmlList <- nfmlToken.listBegin * *nfmlToken.spaceButLineFeed *
+    +(nfmlListLineBeginning * (nfmlToken.comment | >nfmlToken.line)) * *Space *
+    nfmlToken.listEnd:
+    # Rule handler
+    lines = @[]
+    for i, line in capture.capList:
+      if i == 0: continue
+      lines.add parseLine(line.s)
+    value = $lines
 
   # NFML value rule
-  nfmlValue <- nfmlMultilineString | nfmlString
+  nfmlValue <- nfmlList | nfmlMultilineString | nfmlString
   nfmlPair <- >nfmlToken.identifier * nfmlToken.keyValueDelimeter *
     *(Space - nfmlToken.lineFeed) * nfmlValue:
     # The handler views parsed values
@@ -49,7 +65,7 @@ when isMainModule:
            
   test:       just fine!
 
-  kuda-duda:  ---
+  kuda-duda:  --- 
     fff \
     \    kkkk абаба галамага ідододлаофівдлаоівдалофі
     # this shouldn't be seen
@@ -61,8 +77,20 @@ when isMainModule:
     #just a comment
     #### another comment
 
+    list-test: [       
+      kuka
+      ruka
+      le chuka
+      \       owwie
+
+      # comment here
+
+      I love it!
+    ]
+
     button-click: true # included in string
     # not seen
+    krwa: \           l
   """
 
   let res = parser.match(data)

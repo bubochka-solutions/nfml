@@ -28,6 +28,7 @@ grammar "nfmlToken":
   multilineStringDelimeter <- "---"
   lineFeed                 <- ?'\r' * '\n'
   line                     <- ?('\\' * +' ') * +(!lineFeed * 1)
+  spaceButLineFeed         <- !nfmlToken.lineFeed * Space
 
   # Comment token
   comment <- '#' * +(!lineFeed * 1)

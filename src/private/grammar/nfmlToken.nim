@@ -4,7 +4,9 @@
 
 import npeg
 
-# This interesting construction was found in `npeg` repository
+# `grammar` is a macro, which generates plenty of procedures.
+# It might be some of them are not used, which causes a warning "not used".
+# This pragma prevents the warning from being displayed.
 when defined(nimHasUsed): {.used.}
 
 grammar "nfmlToken":

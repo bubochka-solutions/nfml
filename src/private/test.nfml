@@ -1,0 +1,4 @@
+class-name {
+    key: value
+    string: \   i am a string
+}

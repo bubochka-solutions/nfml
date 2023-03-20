@@ -1,0 +1,34 @@
+/* The document is an object */
+document ::= object
+whitespace ::= ' ' | '\t'
+
+object ::= identifier '{' key-value-pair* '}'
+
+key-value-pair ::= whitespace* identifier ':' whitespace* value '\n' whitespace*
+
+
+/* Identifier group */
+identifier ::= identifier-letter+ ( identifier-delimeter identifier-letter )*
+
+identifier-delimeter ::= '-'
+identifier-letter ::= ['a'-'z']
+
+
+/* Value group */
+value ::= object | string | list | array
+
+
+/* String group */
+
+/* Everything except line feed */
+one-line-string ::= [^'\n']+
+
+multiline-string ::= multiline-string-delimeter .+ '\n' whitespace* '---'
+multiline-string-delimeter ::= '---'
+
+/* List group */
+list ::= '[' ( one-line-string '\n' whitespace* )* ']'
+
+
+/* Array group */
+array ::= '[[' (value '\n' whitespace*)* ']]'

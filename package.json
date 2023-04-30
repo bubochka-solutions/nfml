@@ -1,0 +1,20 @@
+{
+  "name": "nfml-parser",
+  "version": "0.1.0",
+  "description": "NFML markup language parser",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nfml",
+    "markup",
+    "parser"
+  ],
+  "author": "Dmytro Rekechynskyi",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.12.0"
+  }
+}

@@ -20,7 +20,7 @@ value: object | string | multiline_string | list | array;
 string: (~NEWLINE)*;
 
 multiline_string
-    : MULTILINE_STRING_DELIMETER NEWLINE+ (string NEWLINE)+ MULTILINE_STRING_DELIMETER
+    : MULTILINE_STRING_DELIMETER NEWLINE+ (string NEWLINE)+? MULTILINE_STRING_DELIMETER
     ;
 
 list: LIST_OPEN NEWLINE+ (string NEWLINE+)* LIST_CLOSE;

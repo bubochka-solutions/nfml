@@ -4,7 +4,8 @@ import * as fs from 'fs';
 import antlr from 'antlr4';
 import NfmlLexer from './antlr/nfmlLexer.js';
 import NfmlParser from './antlr/nfmlParser.js'
-import NfmlListener from './antlr/nfmlListener.js'
+import Listener from './listener.js';
+import Visitor from './visitor.js';
 
 const filename = process.argv[2];
 const input = fs.readFileSync(filename, {
@@ -18,22 +19,8 @@ const parser = new NfmlParser(tokens);
 parser.buildParseTrees = true;
 const tree = parser.nfml();
 
-class Visitor {
-  visitChildren(ctx) {
-    if (!ctx) {
-      return;
-    }
-
-    if (ctx.children) {
-      return ctx.children.map(child => {
-        if (child.children && child.children.length != 0) {
-          return child.accept(this);
-        } else {
-          return child.getText();
-        }
-      });
-    }
-  }
-}
-
 tree.accept(new Visitor());
+
+const listener = new Listener();
+antlr.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
+console.log(listener.getDocument());

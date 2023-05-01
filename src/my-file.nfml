@@ -1,0 +1,94 @@
+my-object {
+    # hello: everyone
+    value: opa lol --hello? !@ NICE
+    another-value: nano let it snow
+    raw-string:   \    lol hello
+
+    object-test: some-freaking-object {
+        property:        hello world
+        raw-a-string:    \  so, how are you? I'm good, thank you
+
+        multiline-string: ---
+            Roses are red
+            Violets are blue
+        ---
+
+        list-example: [
+            Black
+            Yellow
+            Another Color
+
+            \   something like this
+        ]
+
+        another-test-line: ---
+            hwllo, it's me
+            ---aaaa
+            aaaa---
+            --- aaaa
+            aaa ---
+        ---
+
+    }
+
+    array-test: [[
+        my-object {
+            wow-text: ---
+                hello world
+                aa --- aa
+                bye world
+            ---
+            #hello: hello
+        }
+        another-object {
+            wow-text: ---
+                hello world
+                aa --- aa
+                bye world
+            ---
+        }
+
+        a {
+            b: c
+        }
+    ]]
+
+#    multiline-string: ---
+#    I would like to write some text
+#    Which will fit into several lines
+#    ---
+
+#    list-test: [
+
+#        funny lol
+
+
+
+#        \    yeah
+
+
+#    ]
+
+#    test-object: test-object {
+#        property: the value lol, я маю це
+
+#        another-list: [
+#            Black
+#            White
+#            Red
+#            Yellow
+#        ]
+
+#        array-test: [[
+#            my-object {
+#                wow-text: ---
+#                hello world
+
+#                bye world
+#                ---
+#            }
+#        ]]
+#    }
+}
+
+# Another comment

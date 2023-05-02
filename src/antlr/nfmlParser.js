@@ -12,34 +12,34 @@ const serializedATN = [4,1,14,132,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 7,12,7,96,1,7,1,7,4,7,101,8,7,11,7,12,7,102,5,7,105,8,7,10,7,12,7,108,9,
 7,1,7,1,7,1,8,1,8,1,8,4,8,115,8,8,11,8,12,8,116,1,8,5,8,120,8,8,10,8,12,
 8,123,9,8,1,8,1,8,5,8,127,8,8,10,8,12,8,130,9,8,1,8,3,32,38,69,0,9,0,2,4,
-6,8,10,12,14,16,0,1,1,0,12,12,142,0,18,1,0,0,0,2,21,1,0,0,0,4,30,1,0,0,0,
+6,8,10,12,14,16,0,1,1,0,11,11,142,0,18,1,0,0,0,2,21,1,0,0,0,4,30,1,0,0,0,
 6,50,1,0,0,0,8,55,1,0,0,0,10,58,1,0,0,0,12,73,1,0,0,0,14,92,1,0,0,0,16,111,
 1,0,0,0,18,19,3,16,8,0,19,20,5,0,0,1,20,1,1,0,0,0,21,22,3,4,2,0,22,23,5,
-4,0,0,23,25,3,6,3,0,24,26,5,12,0,0,25,24,1,0,0,0,26,27,1,0,0,0,27,25,1,0,
-0,0,27,28,1,0,0,0,28,3,1,0,0,0,29,31,5,2,0,0,30,29,1,0,0,0,31,32,1,0,0,0,
-32,33,1,0,0,0,32,30,1,0,0,0,33,42,1,0,0,0,34,36,5,3,0,0,35,37,5,2,0,0,36,
+3,0,0,23,25,3,6,3,0,24,26,5,11,0,0,25,24,1,0,0,0,26,27,1,0,0,0,27,25,1,0,
+0,0,27,28,1,0,0,0,28,3,1,0,0,0,29,31,5,1,0,0,30,29,1,0,0,0,31,32,1,0,0,0,
+32,33,1,0,0,0,32,30,1,0,0,0,33,42,1,0,0,0,34,36,5,2,0,0,35,37,5,1,0,0,36,
 35,1,0,0,0,37,38,1,0,0,0,38,39,1,0,0,0,38,36,1,0,0,0,39,41,1,0,0,0,40,34,
 1,0,0,0,41,44,1,0,0,0,42,40,1,0,0,0,42,43,1,0,0,0,43,5,1,0,0,0,44,42,1,0,
 0,0,45,51,3,16,8,0,46,51,3,8,4,0,47,51,3,10,5,0,48,51,3,12,6,0,49,51,3,14,
 7,0,50,45,1,0,0,0,50,46,1,0,0,0,50,47,1,0,0,0,50,48,1,0,0,0,50,49,1,0,0,
 0,51,7,1,0,0,0,52,54,8,0,0,0,53,52,1,0,0,0,54,57,1,0,0,0,55,53,1,0,0,0,55,
-56,1,0,0,0,56,9,1,0,0,0,57,55,1,0,0,0,58,60,5,5,0,0,59,61,5,12,0,0,60,59,
+56,1,0,0,0,56,9,1,0,0,0,57,55,1,0,0,0,58,60,5,4,0,0,59,61,5,11,0,0,60,59,
 1,0,0,0,61,62,1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,0,63,67,1,0,0,0,64,65,3,
-8,4,0,65,66,5,12,0,0,66,68,1,0,0,0,67,64,1,0,0,0,68,69,1,0,0,0,69,70,1,0,
-0,0,69,67,1,0,0,0,70,71,1,0,0,0,71,72,5,5,0,0,72,11,1,0,0,0,73,75,5,8,0,
-0,74,76,5,12,0,0,75,74,1,0,0,0,76,77,1,0,0,0,77,75,1,0,0,0,77,78,1,0,0,0,
-78,87,1,0,0,0,79,81,3,8,4,0,80,82,5,12,0,0,81,80,1,0,0,0,82,83,1,0,0,0,83,
+8,4,0,65,66,5,11,0,0,66,68,1,0,0,0,67,64,1,0,0,0,68,69,1,0,0,0,69,70,1,0,
+0,0,69,67,1,0,0,0,70,71,1,0,0,0,71,72,5,4,0,0,72,11,1,0,0,0,73,75,5,7,0,
+0,74,76,5,11,0,0,75,74,1,0,0,0,76,77,1,0,0,0,77,75,1,0,0,0,77,78,1,0,0,0,
+78,87,1,0,0,0,79,81,3,8,4,0,80,82,5,11,0,0,81,80,1,0,0,0,82,83,1,0,0,0,83,
 81,1,0,0,0,83,84,1,0,0,0,84,86,1,0,0,0,85,79,1,0,0,0,86,89,1,0,0,0,87,85,
-1,0,0,0,87,88,1,0,0,0,88,90,1,0,0,0,89,87,1,0,0,0,90,91,5,9,0,0,91,13,1,
-0,0,0,92,94,5,10,0,0,93,95,5,12,0,0,94,93,1,0,0,0,95,96,1,0,0,0,96,94,1,
-0,0,0,96,97,1,0,0,0,97,106,1,0,0,0,98,100,3,16,8,0,99,101,5,12,0,0,100,99,
+1,0,0,0,87,88,1,0,0,0,88,90,1,0,0,0,89,87,1,0,0,0,90,91,5,8,0,0,91,13,1,
+0,0,0,92,94,5,9,0,0,93,95,5,11,0,0,94,93,1,0,0,0,95,96,1,0,0,0,96,94,1,0,
+0,0,96,97,1,0,0,0,97,106,1,0,0,0,98,100,3,16,8,0,99,101,5,11,0,0,100,99,
 1,0,0,0,101,102,1,0,0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,
 104,98,1,0,0,0,105,108,1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,109,1,
-0,0,0,108,106,1,0,0,0,109,110,5,11,0,0,110,15,1,0,0,0,111,112,3,4,2,0,112,
-114,5,6,0,0,113,115,5,12,0,0,114,113,1,0,0,0,115,116,1,0,0,0,116,114,1,0,
+0,0,0,108,106,1,0,0,0,109,110,5,10,0,0,110,15,1,0,0,0,111,112,3,4,2,0,112,
+114,5,5,0,0,113,115,5,11,0,0,114,113,1,0,0,0,115,116,1,0,0,0,116,114,1,0,
 0,0,116,117,1,0,0,0,117,121,1,0,0,0,118,120,3,2,1,0,119,118,1,0,0,0,120,
 123,1,0,0,0,121,119,1,0,0,0,121,122,1,0,0,0,122,124,1,0,0,0,123,121,1,0,
-0,0,124,128,5,7,0,0,125,127,5,12,0,0,126,125,1,0,0,0,127,130,1,0,0,0,128,
+0,0,124,128,5,6,0,0,125,127,5,11,0,0,126,125,1,0,0,0,127,130,1,0,0,0,128,
 126,1,0,0,0,128,129,1,0,0,0,129,17,1,0,0,0,130,128,1,0,0,0,17,27,32,38,42,
 50,55,62,69,77,83,87,96,102,106,116,121,128];
 
@@ -53,13 +53,13 @@ const sharedContextCache = new antlr4.atn.PredictionContextCache();
 export default class nfmlParser extends antlr4.Parser {
 
     static grammarFileName = "nfml.g4";
-    static literalNames = [ null, null, null, "'-'", "':'", "'---'", "'{'", 
-                            "'}'", "'['", "']'", "'[['", "']]'" ];
-    static symbolicNames = [ null, "COMMENT", "ID_LETTER", "ID_SEPARATOR", 
-                             "COLON", "MULTILINE_STRING_DELIMETER", "OBJECT_OPEN", 
+    static literalNames = [ null, null, "'-'", "':'", "'---'", "'{'", "'}'", 
+                            "'['", "']'", "'[['", "']]'" ];
+    static symbolicNames = [ null, "ID_LETTER", "ID_SEPARATOR", "COLON", 
+                             "MULTILINE_STRING_DELIMETER", "OBJECT_OPEN", 
                              "OBJECT_CLOSE", "LIST_OPEN", "LIST_CLOSE", 
-                             "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "WHITESPACE", 
-                             "UNICODE_SET" ];
+                             "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "COMMENT", 
+                             "WHITESPACE", "UNICODE_SET" ];
     static ruleNames = [ "nfml", "pair", "identifier", "value", "string", 
                          "multiline_string", "list", "array", "object" ];
 
@@ -119,7 +119,7 @@ export default class nfmlParser extends antlr4.Parser {
 	            this.state = 27; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===12);
+	        } while(_la===11);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -161,7 +161,7 @@ export default class nfmlParser extends antlr4.Parser {
 	        this.state = 42;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===3) {
+	        while(_la===2) {
 	            this.state = 34;
 	            this.match(nfmlParser.ID_SEPARATOR);
 	            this.state = 36; 
@@ -264,10 +264,10 @@ export default class nfmlParser extends antlr4.Parser {
 	        this.state = 55;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 28670) !== 0)) {
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 30718) !== 0)) {
 	            this.state = 52;
 	            _la = this._input.LA(1);
-	            if(_la<=0 || _la===12) {
+	            if(_la<=0 || _la===11) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
@@ -440,11 +440,11 @@ export default class nfmlParser extends antlr4.Parser {
 	            this.state = 96; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===12);
+	        } while(_la===11);
 	        this.state = 106;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===2) {
+	        while(_la===1) {
 	            this.state = 98;
 	            this.object();
 	            this.state = 100; 
@@ -456,7 +456,7 @@ export default class nfmlParser extends antlr4.Parser {
 	                this.state = 102; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
-	            } while(_la===12);
+	            } while(_la===11);
 	            this.state = 108;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
@@ -498,11 +498,11 @@ export default class nfmlParser extends antlr4.Parser {
 	            this.state = 116; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===12);
+	        } while(_la===11);
 	        this.state = 121;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===2) {
+	        while(_la===1) {
 	            this.state = 118;
 	            this.pair();
 	            this.state = 123;
@@ -542,18 +542,18 @@ export default class nfmlParser extends antlr4.Parser {
 }
 
 nfmlParser.EOF = antlr4.Token.EOF;
-nfmlParser.COMMENT = 1;
-nfmlParser.ID_LETTER = 2;
-nfmlParser.ID_SEPARATOR = 3;
-nfmlParser.COLON = 4;
-nfmlParser.MULTILINE_STRING_DELIMETER = 5;
-nfmlParser.OBJECT_OPEN = 6;
-nfmlParser.OBJECT_CLOSE = 7;
-nfmlParser.LIST_OPEN = 8;
-nfmlParser.LIST_CLOSE = 9;
-nfmlParser.ARRAY_OPEN = 10;
-nfmlParser.ARRAY_CLOSE = 11;
-nfmlParser.NEWLINE = 12;
+nfmlParser.ID_LETTER = 1;
+nfmlParser.ID_SEPARATOR = 2;
+nfmlParser.COLON = 3;
+nfmlParser.MULTILINE_STRING_DELIMETER = 4;
+nfmlParser.OBJECT_OPEN = 5;
+nfmlParser.OBJECT_CLOSE = 6;
+nfmlParser.LIST_OPEN = 7;
+nfmlParser.LIST_CLOSE = 8;
+nfmlParser.ARRAY_OPEN = 9;
+nfmlParser.ARRAY_CLOSE = 10;
+nfmlParser.NEWLINE = 11;
+nfmlParser.COMMENT = 12;
 nfmlParser.WHITESPACE = 13;
 nfmlParser.UNICODE_SET = 14;
 

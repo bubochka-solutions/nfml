@@ -17,8 +17,8 @@ const lexer = new NfmlLexer(chars);
 const tokens = new antlr.CommonTokenStream(lexer);
 const parser = new NfmlParser(tokens);
 parser.buildParseTrees = true;
-const tree = parser.nfml();
 
+const tree = parser.nfml();
 tree.accept(new Visitor());
 
 const listener = new Listener();

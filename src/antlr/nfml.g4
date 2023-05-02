@@ -33,11 +33,8 @@ object: identifier OBJECT_OPEN NEWLINE+ pair* OBJECT_CLOSE NEWLINE*;
 * Lexer rules
 *********************/
 
-// Comment rule
-COMMENT: '#' .*? (NEWLINE | EOF) -> skip;
-
 // Literal values
-ID_LETTER: 'a'..'z';
+ID_LETTER: [a-z];
 ID_SEPARATOR: '-';
 COLON: ':';
 
@@ -53,6 +50,9 @@ ARRAY_OPEN: '[[';
 ARRAY_CLOSE: ']]';
 
 NEWLINE: ('\r'? '\n');
+
+// Comment rule
+COMMENT: NEWLINE [ \t]* '#' ~('\r' | '\n')* -> skip;
 
 // Ignore indentation whitespace
 WHITESPACE: [ \t]+ -> channel(HIDDEN);

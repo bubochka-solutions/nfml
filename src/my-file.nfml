@@ -5,12 +5,16 @@ my-object {
     raw-string:   \    lol hello
 
     object-test: some-freaking-object {
-        property:        hello world
+        property: a#a hello world
+
         raw-a-string:    \  so, how are you? I'm good, thank you
 
         multiline-string: ---
             Roses are red
             Violets are blue
+            \# Flowers are great
+            So are you # lol, this is not a comment
+            # But this is a comment
         ---
 
         list-example: [
@@ -46,49 +50,13 @@ my-object {
                 aa --- aa
                 bye world
             ---
+            hello: hello
         }
 
         a {
             b: c
         }
     ]]
-
-#    multiline-string: ---
-#    I would like to write some text
-#    Which will fit into several lines
-#    ---
-
-#    list-test: [
-
-#        funny lol
-
-
-
-#        \    yeah
-
-
-#    ]
-
-#    test-object: test-object {
-#        property: the value lol, я маю це
-
-#        another-list: [
-#            Black
-#            White
-#            Red
-#            Yellow
-#        ]
-
-#        array-test: [[
-#            my-object {
-#                wow-text: ---
-#                hello world
-
-#                bye world
-#                ---
-#            }
-#        ]]
-#    }
 }
 
 # Another comment

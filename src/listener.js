@@ -1,5 +1,6 @@
 'use strict';
 
+// Base listener class
 import NfmlListener from './antlr/nfmlListener.js';
 
 const mode = {
@@ -8,6 +9,11 @@ const mode = {
     listContext: 'LIST',
     arrayContext: 'ARRAY'
 };
+
+const kebabToCamelCase = (string) =>
+    string.replace(/-./g, (x) => x[1].toUpperCase());
+
+const capitalize = (string) => string[0].toUpperCase() + string.slice(1);
 
 export default class Listener extends NfmlListener {
     #document;
@@ -42,7 +48,8 @@ export default class Listener extends NfmlListener {
     // Enter a parse tree produced by nfmlParser#identifier.
     enterIdentifier(ctx) {
         const identifier = ctx.getText();
-        this.#identifierStack.push(identifier);
+        const camelCaseId = kebabToCamelCase(identifier);
+        this.#identifierStack.push(camelCaseId);
     }
 
     // Enter a parse tree produced by nfmlParser#string.
@@ -184,7 +191,8 @@ export default class Listener extends NfmlListener {
     // Exit a parse tree produced by nfmlParser#object.
     exitObject(ctx) {
         const identifier = this.#identifierStack.pop();
-        this.#currentObjectReference._class = identifier;
+        const classId = capitalize(identifier);
+        this.#currentObjectReference._class = classId;
 
         const rootObject = this.#objectReferenceStack.pop();
         if (rootObject) {

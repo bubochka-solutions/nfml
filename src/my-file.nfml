@@ -1,62 +1,23 @@
-my-object {
-    # hello: everyone
-    value: opa lol --hello? !@ NICE
-    another-value: nano let it snow
-    raw-string:   \    lol hello
+# Simple document example
 
-    object-test: some-freaking-object {
-        property: a#a hello world
+document {
+    title: Hello, my beautiful world!
 
-        raw-a-string:    \  so, how are you? I'm good, thank you
-
-        multiline-string: ---
-            Roses are red
-            Violets are blue
-            \# Flowers are great
-            So are you # lol, this is not a comment
-            # But this is a comment
-        ---
-
-        list-example: [
-            Black
-            Yellow
-            Another Color
-
-            \   something like this
-        ]
-
-        another-test-line: ---
-            hwllo, it's me
-            ---aaaa
-            aaaa---
-            --- aaaa
-            aaa ---
-        ---
-
-    }
-
-    array-test: [[
-        my-object {
-            wow-text: ---
-                hello world
-                aa --- aa
-                bye world
-            ---
-            #hello: hello
-        }
-        another-object {
-            wow-text: ---
-                hello world
-                aa --- aa
-                bye world
-            ---
-            hello: hello
+    children: [[
+        button {
+            title: Click on me!
         }
 
-        a {
-            b: c
+        label {
+            title: Can you see this?
+        }
+
+        # Link element example
+        link {
+            title: Check more information
+            url: https://google.com
         }
     ]]
 }
 
-# Another comment
+# Author: Dmytro Rekechynsky, a coding guy

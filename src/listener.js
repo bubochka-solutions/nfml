@@ -1,5 +1,3 @@
-'use strict';
-
 // Base listener class
 import NfmlListener from './antlr/nfmlListener.js';
 

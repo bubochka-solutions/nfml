@@ -27,7 +27,7 @@ list: LIST_OPEN NEWLINE+ (string NEWLINE+)* LIST_CLOSE;
 
 array: ARRAY_OPEN NEWLINE+ (object NEWLINE+)* ARRAY_CLOSE;
 
-object: identifier OBJECT_OPEN NEWLINE+ pair* OBJECT_CLOSE NEWLINE*;
+object: NEWLINE* identifier OBJECT_OPEN NEWLINE+ pair* OBJECT_CLOSE NEWLINE*;
 
 /********************
 * Lexer rules
@@ -53,6 +53,11 @@ NEWLINE: ('\r'? '\n');
 
 // Comment rule
 COMMENT: NEWLINE [ \t]* '#' ~('\r' | '\n')* -> skip;
+
+// Comment at the beginning of file hack
+COMMENT_AT_BEGGINING_OF_FILE:
+    {this.column === 0}? [ \t]* '#' ~('\r' | '\n')* -> skip
+    ;
 
 // Ignore indentation whitespace
 WHITESPACE: [ \t]+ -> channel(HIDDEN);

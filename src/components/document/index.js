@@ -1,6 +1,3 @@
-import { fileURLToPath } from 'url';
-import * as fs from 'fs/promises';
-import path from 'path';
 import Component from '../Component.js';
 
 export default class Document extends Component {
@@ -9,30 +6,52 @@ export default class Document extends Component {
 
         this.title = data.title;
         this.children = data.children;
+        this.rootName = "root";
     }
 
     async prepare() {
         const children = this.children;
         let childrenContent = '';
 
-        for (const child of children) {
-            await child.prepare();
-            childrenContent += child.content;
-        }
-
         switch (this.targetPlatform) {
             case this.PLATFORM_MAP.html:
-                const directoryPath = path.dirname(fileURLToPath(import.meta.url));
-                const filePath = path.resolve(directoryPath, 'html', 'index.html');
-                const file = await fs.readFile(filePath, {encoding: 'utf8'});
+                for (const child of children) {
+                    await child.prepare();
+                    childrenContent += child.content;
+                }
 
-                const preparedPage = file
+                const htmlFile = await this.readTemplateFile(import.meta.url, 'html', 'index.html');
+
+                const preparedPage = htmlFile
                     .replace('{title}', this.title)
                     .replace('{children}', childrenContent);
 
                 this.content = preparedPage;
                 break;
+            case this.PLATFORM_MAP.java:
+                let childrenAssignment = '';
+
+                const rootAssignment = (childName) =>
+                    `${this.rootName}.getChildren().add(${childName});\n`;
+
+                for (const child of children) {
+                    await child.prepare();
+                    childrenContent += child.content;
+                    childrenAssignment += rootAssignment(child.variableName);
+                }
+
+                const javaFile = await this.readTemplateFile(import.meta.url, 'java', 'Example.java');
+
+                const preparedApp = javaFile
+                    .replace('{title}', this.title)
+                    .replaceAll('DOCUMENT_ROOT_NAME', this.rootName)
+                    .replace('//children', childrenContent)
+                    .replace('//childrenAssignment', childrenAssignment);
+
+                this.content = preparedApp
+                break;
+            default:
+                this.content = 'Wait until the next release!';
         }
     }
-
 }

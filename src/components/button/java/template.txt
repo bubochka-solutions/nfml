@@ -1,0 +1,1 @@
+Button {identifier} = new Button("{title}");

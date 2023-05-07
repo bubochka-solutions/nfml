@@ -1,0 +1,5 @@
+Hyperlink {identifier} = new Hyperlink("{title}");
+{identifier}.setOnAction(event -> {
+    getHostServices().showDocument("{url}");
+    event.consume();
+});

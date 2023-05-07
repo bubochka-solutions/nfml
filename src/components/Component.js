@@ -1,3 +1,7 @@
+import { fileURLToPath } from 'url';
+import * as fs from 'fs/promises';
+import path from 'path';
+
 export default class Component {
     content = '';
     PLATFORM_MAP = {
@@ -36,5 +40,31 @@ export default class Component {
 
             this.children = result;
         }
+    }
+
+    generateIdentificator(identificatorLength = 8) {
+        const FIRST_LETTER_CODE = 97;
+        const LETTER_AMOUNT = 25;
+
+        const randomCharacter = () => {
+            const letterPosition = Math.round(LETTER_AMOUNT * Math.random());
+            return String.fromCharCode(FIRST_LETTER_CODE + letterPosition);
+        }
+
+        let identificator = '';
+
+        for (let i = 0; i < identificatorLength; i++) {
+            identificator += randomCharacter();
+        }
+
+        return identificator;
+    }
+
+    async readTemplateFile(absolutePath, folderName, filename) {
+        const directoryPath = path.dirname(fileURLToPath(absolutePath));
+        const filePath = path.resolve(directoryPath, folderName, filename);
+        const file = await fs.readFile(filePath, {encoding: 'utf8'});
+
+        return file;
     }
 }

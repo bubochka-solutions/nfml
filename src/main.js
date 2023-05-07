@@ -10,6 +10,7 @@ const filename = process.argv[2];
 const input = fs.readFileSync(filename, {
     encoding: 'utf8'
 });
+const targetPlatform = process.argv[3] || 'HTML';
 
 const chars = new antlr.InputStream(input);
 const lexer = new NfmlLexer(chars);
@@ -24,5 +25,5 @@ const listener = new Listener();
 antlr.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
 const document = listener.getDocument();
 
-const contents = await traverseDocument(document, 'HTML');
+const contents = await traverseDocument(document, targetPlatform);
 console.log(contents);

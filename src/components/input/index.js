@@ -1,10 +1,8 @@
 import Component from '../Component.js';
 
-export default class Link extends Component {
+export default class Input extends Component {
     constructor (data, targetPlatform) {
         super(data, targetPlatform);
-
-        this.url = data.url;
     }
 
     async prepare() {
@@ -13,8 +11,7 @@ export default class Link extends Component {
                 const htmlFile = await this.readTemplateFile(import.meta.url, 'html', 'index.html');
 
                 const preparedPage = htmlFile
-                    .replace('{title}', this.title)
-                    .replace('{url}', this.url);
+                    .replace('{title}', this.title);
 
                 this.content = preparedPage;
                 break;
@@ -26,8 +23,7 @@ export default class Link extends Component {
 
                 const preparedComponent = javaFile
                     .replace('{title}', this.title)
-                    .replaceAll('{identifier}', variableName)
-                    .replace('{url}', this.url);
+                    .replaceAll('{identifier}', variableName);
 
                 this.content = preparedComponent;
         }

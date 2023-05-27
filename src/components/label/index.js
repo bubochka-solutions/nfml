@@ -3,8 +3,6 @@ import Component from '../Component.js';
 export default class Label extends Component {
     constructor (data, targetPlatform) {
         super(data, targetPlatform);
-
-        this.title = data.title;
     }
 
     async prepare() {
@@ -19,7 +17,7 @@ export default class Label extends Component {
                 break;
             case this.PLATFORM_MAP.java:
                 const javaFile = await this.readTemplateFile(import.meta.url, 'java', 'template.txt');
-                const variableName = this.generateIdentificator();
+                const variableName = this.retrieveIdentificator();
 
                 this.variableName = variableName;
 

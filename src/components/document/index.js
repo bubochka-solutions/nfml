@@ -13,10 +13,12 @@ export default class Document extends Component {
         const children = this.children;
         let childrenContent = '';
 
+        // Let all the childs to be prepared
+        await Promise.allSettled(children.map((child) => child.prepare()));
+
         switch (this.targetPlatform) {
             case this.PLATFORM_MAP.html:
                 for (const child of children) {
-                    await child.prepare();
                     childrenContent += child.content;
                 }
 
@@ -35,7 +37,6 @@ export default class Document extends Component {
                     `${this.rootName}.getChildren().add(${childName});\n`;
 
                 for (const child of children) {
-                    await child.prepare();
                     childrenContent += child.content;
                     childrenAssignment += rootAssignment(child.variableName);
                 }
@@ -50,8 +51,6 @@ export default class Document extends Component {
 
                 this.content = preparedApp
                 break;
-            default:
-                this.content = 'Wait until the next release!';
         }
     }
 }

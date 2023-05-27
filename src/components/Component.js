@@ -15,6 +15,8 @@ export default class Component {
             throw new Error(`Element Document does not support ${targetPlatform}`);
         }
 
+        this.id = data.id;
+        this.title = data.title;
         this.targetPlatform = targetPlatform;
     }
 
@@ -42,7 +44,11 @@ export default class Component {
         }
     }
 
-    generateIdentificator(identificatorLength = 8) {
+    retrieveIdentificator(identificatorLength = 8) {
+        if (this.id) {
+            return this.id;
+        }
+
         const FIRST_LETTER_CODE = 97;
         const LETTER_AMOUNT = 25;
 

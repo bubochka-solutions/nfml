@@ -55,7 +55,7 @@ NEWLINE: ('\r'? '\n');
 COMMENT: NEWLINE [ \t]* '#' ~('\r' | '\n')* -> skip;
 
 // Comment at the beginning of file hack
-COMMENT_AT_BEGGINING_OF_FILE:
+COMMENT_AT_BEGINNING_OF_FILE:
     {this.column === 0}? [ \t]* '#' ~('\r' | '\n')* -> skip
     ;
 

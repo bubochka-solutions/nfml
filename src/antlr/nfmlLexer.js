@@ -1,4 +1,4 @@
-// Generated from nfml.g4 by ANTLR 4.12.0
+// Generated from nfml.g4 by ANTLR 4.13.0
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -50,12 +50,12 @@ export default class nfmlLexer extends antlr4.Lexer {
 	static symbolicNames = [ null, "ID_LETTER", "ID_SEPARATOR", "COLON", "MULTILINE_STRING_DELIMETER", 
                           "OBJECT_OPEN", "OBJECT_CLOSE", "LIST_OPEN", "LIST_CLOSE", 
                           "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "COMMENT", 
-                          "COMMENT_AT_BEGGINING_OF_FILE", "WHITESPACE", 
+                          "COMMENT_AT_BEGINNING_OF_FILE", "WHITESPACE", 
                           "UNICODE_SET" ];
 	static ruleNames = [ "ID_LETTER", "ID_SEPARATOR", "COLON", "MULTILINE_STRING_DELIMETER", 
                       "OBJECT_OPEN", "OBJECT_CLOSE", "LIST_OPEN", "LIST_CLOSE", 
                       "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "COMMENT", 
-                      "COMMENT_AT_BEGGINING_OF_FILE", "WHITESPACE", "UNICODE_SET" ];
+                      "COMMENT_AT_BEGINNING_OF_FILE", "WHITESPACE", "UNICODE_SET" ];
 
     constructor(input) {
         super(input)
@@ -76,20 +76,20 @@ nfmlLexer.ARRAY_OPEN = 9;
 nfmlLexer.ARRAY_CLOSE = 10;
 nfmlLexer.NEWLINE = 11;
 nfmlLexer.COMMENT = 12;
-nfmlLexer.COMMENT_AT_BEGGINING_OF_FILE = 13;
+nfmlLexer.COMMENT_AT_BEGINNING_OF_FILE = 13;
 nfmlLexer.WHITESPACE = 14;
 nfmlLexer.UNICODE_SET = 15;
 
 nfmlLexer.prototype.sempred = function(localctx, ruleIndex, predIndex) {
 	switch (ruleIndex) {
 		case 12:
-			return this.COMMENT_AT_BEGGINING_OF_FILE_sempred(localctx, predIndex);
+			return this.COMMENT_AT_BEGINNING_OF_FILE_sempred(localctx, predIndex);
     	default:
     		throw "No registered predicate for:" + ruleIndex;
     }
 };
 
-nfmlLexer.prototype.COMMENT_AT_BEGGINING_OF_FILE_sempred = function(localctx, predIndex) {
+nfmlLexer.prototype.COMMENT_AT_BEGINNING_OF_FILE_sempred = function(localctx, predIndex) {
 	switch(predIndex) {
 		case 0:
 			return this.column === 0;

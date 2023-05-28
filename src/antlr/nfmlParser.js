@@ -1,4 +1,4 @@
-// Generated from nfml.g4 by ANTLR 4.12.0
+// Generated from nfml.g4 by ANTLR 4.13.0
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import nfmlListener from './nfmlListener.js';
@@ -61,7 +61,7 @@ export default class nfmlParser extends antlr4.Parser {
                              "MULTILINE_STRING_DELIMETER", "OBJECT_OPEN", 
                              "OBJECT_CLOSE", "LIST_OPEN", "LIST_CLOSE", 
                              "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "COMMENT", 
-                             "COMMENT_AT_BEGGINING_OF_FILE", "WHITESPACE", 
+                             "COMMENT_AT_BEGINNING_OF_FILE", "WHITESPACE", 
                              "UNICODE_SET" ];
     static ruleNames = [ "nfml", "pair", "identifier", "value", "string", 
                          "multiline_string", "list", "array", "object" ];
@@ -579,7 +579,7 @@ nfmlParser.ARRAY_OPEN = 9;
 nfmlParser.ARRAY_CLOSE = 10;
 nfmlParser.NEWLINE = 11;
 nfmlParser.COMMENT = 12;
-nfmlParser.COMMENT_AT_BEGGINING_OF_FILE = 13;
+nfmlParser.COMMENT_AT_BEGINNING_OF_FILE = 13;
 nfmlParser.WHITESPACE = 14;
 nfmlParser.UNICODE_SET = 15;
 

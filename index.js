@@ -43,9 +43,12 @@ if (foundHelpArgument || !parsedArguments.filename) {
 const { filename, platform, outputFile } = parsedArguments;
 const input = await fs.readFile(filename, fileSystemOptions);
 
-const compiledOutput = await compile(input, platform);
+const { error, compiledOutput } = await compile(input, platform);
 
-if (outputFile) {
+if (error) {
+    console.error(`${filename} contains errors. Please, see above.`);
+    process.exitCode = 1;
+} else if (outputFile) {
     await fs.writeFile(outputFile, compiledOutput, fileSystemOptions);
     console.log(`The result has been written to file ${outputFile}`);
 } else {

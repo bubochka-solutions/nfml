@@ -36,9 +36,14 @@ export default class Document extends Component {
                 const rootAssignment = (childName) =>
                     `${this.rootName}.getChildren().add(${childName});\n`;
 
+                const addIdentation = (text, identation = 8) => {
+                    const identationPart = ' '.repeat(identation);
+                    return identationPart + text.replace(/\n(?!$)/g, '\n' + identationPart);
+                };
+
                 for (const child of children) {
-                    childrenContent += child.content;
-                    childrenAssignment += rootAssignment(child.variableName);
+                    childrenContent += addIdentation(child.content);
+                    childrenAssignment += addIdentation(rootAssignment(child.variableName));
                 }
 
                 const javaFile = await this.readTemplateFile(import.meta.url, 'java', 'Example.java');

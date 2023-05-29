@@ -9,16 +9,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
 public class Example extends Application {
-
     @Override
     public void start(Stage primaryStage) {
-        //children
-
-        // Add the button and label to a layout pane
+//children
         VBox DOCUMENT_ROOT_NAME = new VBox();
 
-        //childrenAssignment
-
+//childrenAssignment
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         double screenHeight = screenBounds.getHeight();
         double screenWidth = screenBounds.getWidth();

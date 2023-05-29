@@ -16,7 +16,7 @@ export const compile = async (input, targetPlatform) => {
     tree.accept(new Visitor());
 
     if (tree.parser._syntaxErrors > 0) {
-        return '';
+        return { error: true };
     }
 
     const listener = new Listener();
@@ -25,5 +25,5 @@ export const compile = async (input, targetPlatform) => {
     const document = listener.getDocument();
 
     const contents = await traverseDocument(document, targetPlatform);
-    return contents;
+    return { compiledOutput: contents };
 };

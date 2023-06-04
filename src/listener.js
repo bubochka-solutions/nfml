@@ -21,7 +21,7 @@ export default class Listener extends NfmlListener {
     #objectReferenceStack = [];
     #currentObjectReference;
 
-    multilineStringBuffer = '';
+    #multilineStringBuffer = '';
 
     getDocument() {
         return this.#document;
@@ -86,7 +86,7 @@ export default class Listener extends NfmlListener {
 
         switch (currentMode) {
             case mode.multilineStringContext:
-                this.multilineStringBuffer += value + '\n';
+                this.#multilineStringBuffer += value + '\n';
                 break;
             case mode.listContext:
                 this.#currentObjectReference.push(value);
@@ -105,11 +105,11 @@ export default class Listener extends NfmlListener {
     // Exit a parse tree produced by nfmlParser#multiline_string.
     exitMultiline_string(ctx) {
         const identifier = this.#identifierStack.pop();
-        const value = this.multilineStringBuffer;
+        const value = this.#multilineStringBuffer;
         this.#currentObjectReference[identifier] = value;
 
         this.#modeStack.pop();
-        this.multilineStringBuffer = '';
+        this.#multilineStringBuffer = '';
     }
 
 

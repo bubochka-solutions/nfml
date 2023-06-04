@@ -12,7 +12,7 @@ export default class Component {
 
     constructor (data, targetPlatform) {
         if (!this.AVAILABLE_PLATFORMS.includes(targetPlatform)) {
-            throw new Error(`Element Document does not support ${targetPlatform}`);
+            throw new Error(`The system does not support ${targetPlatform}`);
         }
 
         this.id = data.id;

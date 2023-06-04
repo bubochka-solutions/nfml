@@ -3,8 +3,6 @@ import Component from '../Component.js';
 export default class Document extends Component {
     constructor (data, targetPlatform) {
         super(data, targetPlatform);
-
-        this.title = data.title;
         this.children = data.children;
         this.rootName = "root";
     }

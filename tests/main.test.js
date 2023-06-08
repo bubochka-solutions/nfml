@@ -4,6 +4,10 @@ import { main } from '../index.js';
 // Spy on console.log
 const consoleLog = jest.spyOn(global.console, 'log').mockImplementation(() => {});
 
+afterEach(() => {
+    consoleLog.mockClear();
+});
+
 describe('Main file', () => {
     it('should display the help text when the filename argument is missing', async () => {
         process.argv = ['node', 'index.js'];

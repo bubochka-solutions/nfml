@@ -235,7 +235,7 @@ write scripts).
 
 #### Array
 
-Array is a container for complex mulitline elements:
+Array is a container for objects:
 
 ```
 [[
@@ -247,15 +247,9 @@ Array is a container for complex mulitline elements:
     label: You can't press me(
   }
 
-  ---
-  This is
-  one element.
-  Still the part of this element
-  ---
-
-  This is another element
-  Oh, it's another one element
-
+  text-label: {
+    contents: This is a button. Cannot be pressed.
+  }
 ]]
 ```
 
@@ -426,19 +420,21 @@ document {
 
   body {
     entries: [[
-      ---
-      Hello everyone!
+      text-area: {
+        contents: ---
+          Hello everyone!
 
-      # Comments are allowed to write here, lol
-      Welcome to this craze code example!
-      It holds much text, but parts should be separated
-      and everything should be constructed so that
-      \               it will be
-      \           easy
-      \         to
-      \     read
-      \this!      
-      ---
+          # Comments are allowed to write here, lol
+          Welcome to this craze code example!
+          It holds much text, but parts should be separated
+          and everything should be constructed so that
+          \               it will be
+          \           easy
+          \         to
+          \     read
+          \this!
+        ---
+      }
     ]]
   }
 }

@@ -5,7 +5,8 @@ const mode = {
     objectContext: 'OBJECT',
     multilineStringContext: 'MULTILINE_STRING',
     listContext: 'LIST',
-    arrayContext: 'ARRAY'
+    arrayContext: 'ARRAY',
+    importContext: 'IMPORT',
 };
 
 const kebabToCamelCase = (string) =>
@@ -37,9 +38,16 @@ export default class Listener extends NfmlListener {
         return modeStack[modeStack.length - 1];
     }
 
+    #addImportPath(path) {
+        this.#document.importPaths.push(path);
+    }
+
     // Enter a parse tree produced by nfmlParser#nfml.
     enterNfml(ctx) {
-        this.#document = {};
+        this.#document = {
+            importPaths: [],
+        };
+
         this.#currentObjectReference = this.#document;
     }
 
@@ -198,5 +206,23 @@ export default class Listener extends NfmlListener {
         }
 
         this.#modeStack.pop();
+    }
+
+    enterImportStatement(ctx) {
+        this.#modeStack.push(mode.importContext);
+    }
+
+    exitImportStatement(ctx) {
+        this.#modeStack.pop();
+    }
+
+    enterPath(ctx) {
+        const path = ctx.getText();
+        const currentMode = this.#getCurrentMode();
+
+        if (currentMode === mode.importContext) {
+            const unquotedPath = path.slice(1, -1);
+            this.#addImportPath(unquotedPath);
+        }
     }
 }

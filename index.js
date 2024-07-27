@@ -1,3 +1,4 @@
+import path from 'path';
 import * as fs from 'fs/promises';
 import { compile } from './src/nfml.js';
 import { HELP_MODE, ARGUMENT_MAP, MODE_MAP, HELP_TEXT } from './constants.js';
@@ -48,7 +49,9 @@ export const processNfml = async ({
     };
 
     const input = await fs.readFile(filename, fileSystemOptions);
-    const { error, compiledOutput } = await compile(input, platform);
+    const workDir = path.dirname(path.resolve(filename));
+
+    const { error, compiledOutput } = await compile(input, workDir, platform);
 
     if (error) {
         result.error = true;

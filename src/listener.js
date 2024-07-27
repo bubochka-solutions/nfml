@@ -1,6 +1,8 @@
 // Base listener class
 import NfmlListener from './antlr/nfmlListener.js';
 
+import { capitalize, kebabToCamelCase } from '../utils.js';
+
 const mode = {
     objectContext: 'OBJECT',
     multilineStringContext: 'MULTILINE_STRING',
@@ -8,11 +10,6 @@ const mode = {
     arrayContext: 'ARRAY',
     importContext: 'IMPORT',
 };
-
-const kebabToCamelCase = (string) =>
-    string.replace(/-./g, (x) => x[1].toUpperCase());
-
-const capitalize = (string) => string[0].toUpperCase() + string.slice(1);
 
 export default class Listener extends NfmlListener {
     #document;

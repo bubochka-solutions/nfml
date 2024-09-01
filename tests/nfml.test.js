@@ -14,9 +14,10 @@ describe('compile', () => {
                 ]]
             }
         `;
+        const workingDirectory = process.cwd();
         const targetPlatform = 'HTML';
 
-        const result = await compile(input, targetPlatform);
+        const result = await compile(input, workingDirectory, targetPlatform);
         expect(result.compiledOutput).toContain(title);
         expect(result.error).toBeUndefined();
     });
@@ -29,9 +30,10 @@ describe('compile', () => {
                 ]]
             }
         `;
+        const workingDirectory = process.cwd();
         const targetPlatform = 'HTML';
 
-        const result = await compile(input, targetPlatform);
+        const result = await compile(input, workingDirectory, targetPlatform);
         expect(result.error).toBeTruthy();
     });
 });

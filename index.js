@@ -42,23 +42,45 @@ const parseArguments = (...inputArguments) => {
 export const processNfml = async ({
     filename,
     platform,
-    outputFile
+    outputFile,
+    currentDirectory
 }) => {
     const result = {
         error: false
     };
 
-    const input = await fs.readFile(filename, fileSystemOptions);
-    const workDir = path.dirname(path.resolve(filename));
+    const requiredArguments = Object.entries({ filename, platform });
+
+    for (const [key, value] of requiredArguments) {
+        if (typeof value === 'undefined') {
+            result.error = true;
+            result.message = `The argument ${key} is missing`;
+            return result;
+        }
+    }
+
+    const fallbackWorkDir = currentDirectory || process.cwd();
+    const workDir = path.isAbsolute(filename) ? path.dirname(filename) :
+        fallbackWorkDir;
+
+    const fullFilePath = path.isAbsolute(filename) ? filename :
+        path.resolve(workDir, filename);
+
+    const input = await fs.readFile(fullFilePath, fileSystemOptions);
 
     const { error, compiledOutput } = await compile(input, workDir, platform);
 
     if (error) {
         result.error = true;
-        result.message = `${filename} contains errors. Please, see above.`;
+        result.message = `${filename} (full path: ${fullFilePath})` +
+            ` contains errors. Please, see above.`;
     } else if (outputFile) {
-        await fs.writeFile(outputFile, compiledOutput, fileSystemOptions);
-        result.message = `The result has been written to file ${outputFile}`;
+        const outputFilePath = path.isAbsolute(outputFile) ? outputFile :
+            path.resolve(fallbackWorkDir, outputFile);
+
+        await fs.writeFile(outputFilePath, compiledOutput, fileSystemOptions);
+        result.message = `The result has been written to file ${outputFile},` +
+            ` path: ${outputFilePath}`;
     } else {
         result.output = compiledOutput;
     }

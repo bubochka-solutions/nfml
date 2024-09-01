@@ -1,0 +1,6 @@
+document {
+    title: Hello, world!
+
+    children: [[
+    ]]
+}

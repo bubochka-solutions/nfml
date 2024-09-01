@@ -1,3 +1,5 @@
 node_modules/
-*.nfml
 .antlr/
+
+*.nfml
+!tests/**/*.nfml

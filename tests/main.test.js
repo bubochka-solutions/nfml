@@ -1,37 +1,61 @@
-import { jest } from '@jest/globals';
-import { main } from '../index.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-// Spy on console.log
-const consoleLog = jest.spyOn(global.console, 'log').mockImplementation(() => {});
+import { processNfml } from '../index.js';
 
-afterEach(() => {
-    consoleLog.mockClear();
-});
+describe('processNfml', () => {
+    it('should return error result when the arguments are missing', async () => {
+        const result = await processNfml({});
 
-describe('Main file', () => {
-    it('should display the help text when the filename argument is missing', async () => {
-        process.argv = ['node', 'index.js'];
-        await expect(main()).resolves.not.toThrow();
+        expect(result.error).toBeTruthy();
+        expect(result.message).toBeDefined();
+    });
 
-        expect(consoleLog).toHaveBeenCalledWith(expect.stringContaining('Usage:'));
+    it('should return error result when the filename argument is missing', async () => {
+        const result = await processNfml({
+            platform: 'test',
+            outputFile: 'test'
+        });
+
+        expect(result.error).toBeTruthy();
+        expect(result.message).toBeDefined();
+    });
+
+    it('should return error result when the platform argument is missing', async () => {
+        const result = await processNfml({
+            filename: 'test',
+            outputFile: 'test'
+        });
+
+        expect(result.error).toBeTruthy();
+        expect(result.message).toBeDefined();
+    });
+
+    it('should not return error result when the outputFile argument is missing', async () => {
+        const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+        const result = await processNfml({
+            currentDirectory: dirname,
+            filename: 'test-file.nfml',
+            platform: 'HTML'
+        });
+
+        expect(result.error).not.toBeTruthy();
+        expect(result.message).not.toBeDefined();
     });
 
     it('should compile the input and return the compiled output', async () => {
-        process.argv = ['node', 'index.js', '--file', 'my-file.nfml'];
-        await expect(main()).resolves.not.toThrow();
+        const dirname = path.dirname(fileURLToPath(import.meta.url));
 
-        expect(consoleLog).toHaveBeenCalledWith(expect.stringContaining('html'));
-    });
+        const result = await processNfml({
+            currentDirectory: dirname,
+            filename: 'test-file.nfml',
+            platform: 'HTML'
+        });
 
-    it('should throw an error when an invalid argument is provided', async () => {
-        process.argv = ['node', 'index.js', '--invalid-argument'];
-        await expect(main()).rejects.toThrow();
-    });
+        expect(result.error).not.toBeTruthy();
+        expect(result.message).not.toBeDefined();
 
-    it('should display the help text when the help argument is provided', async () => {
-        process.argv = ['node', 'index.js', '--help'];
-        await expect(main()).resolves.not.toThrow();
-
-        expect(consoleLog).toHaveBeenCalledWith(expect.stringContaining('Usage:'));
+        expect(result.output).toEqual(expect.stringContaining('html'));
     });
 });

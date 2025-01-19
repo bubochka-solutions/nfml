@@ -41,6 +41,15 @@ export default class nfmlListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by nfmlParser#importStatement.
+	enterImportStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by nfmlParser#importStatement.
+	exitImportStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by nfmlParser#string.
 	enterString(ctx) {
 	}
@@ -83,6 +92,24 @@ export default class nfmlListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by nfmlParser#object.
 	exitObject(ctx) {
+	}
+
+
+	// Enter a parse tree produced by nfmlParser#path.
+	enterPath(ctx) {
+	}
+
+	// Exit a parse tree produced by nfmlParser#path.
+	exitPath(ctx) {
+	}
+
+
+	// Enter a parse tree produced by nfmlParser#filename.
+	enterFilename(ctx) {
+	}
+
+	// Exit a parse tree produced by nfmlParser#filename.
+	exitFilename(ctx) {
 	}
 
 

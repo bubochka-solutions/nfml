@@ -27,7 +27,16 @@ export default class Component {
             const result = [];
 
             for (const child of this.children) {
-                const {_class, ...data} = child;
+                const {_class, compiledOutput, ...data} = child;
+
+                if (compiledOutput) {
+                    const element = new Component({}, this.targetPlatform);
+                    element.content = compiledOutput;
+
+                    result.push(element);
+                    continue;
+                }
+
                 const CurrentComponent = componentMap[_class];
 
                 if (!CurrentComponent) {

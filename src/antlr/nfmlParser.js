@@ -2,48 +2,64 @@
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import nfmlListener from './nfmlListener.js';
-const serializedATN = [4,1,15,138,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
-4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,1,0,1,0,1,0,1,1,1,1,1,1,1,1,4,1,26,8,1,
-11,1,12,1,27,1,2,4,2,31,8,2,11,2,12,2,32,1,2,1,2,4,2,37,8,2,11,2,12,2,38,
-5,2,41,8,2,10,2,12,2,44,9,2,1,3,1,3,1,3,1,3,1,3,3,3,51,8,3,1,4,5,4,54,8,
-4,10,4,12,4,57,9,4,1,5,1,5,4,5,61,8,5,11,5,12,5,62,1,5,1,5,1,5,4,5,68,8,
-5,11,5,12,5,69,1,5,1,5,1,6,1,6,4,6,76,8,6,11,6,12,6,77,1,6,1,6,4,6,82,8,
-6,11,6,12,6,83,5,6,86,8,6,10,6,12,6,89,9,6,1,6,1,6,1,7,1,7,4,7,95,8,7,11,
-7,12,7,96,1,7,1,7,4,7,101,8,7,11,7,12,7,102,5,7,105,8,7,10,7,12,7,108,9,
-7,1,7,1,7,1,8,5,8,113,8,8,10,8,12,8,116,9,8,1,8,1,8,1,8,4,8,121,8,8,11,8,
-12,8,122,1,8,5,8,126,8,8,10,8,12,8,129,9,8,1,8,1,8,5,8,133,8,8,10,8,12,8,
-136,9,8,1,8,3,32,38,69,0,9,0,2,4,6,8,10,12,14,16,0,1,1,0,11,11,149,0,18,
-1,0,0,0,2,21,1,0,0,0,4,30,1,0,0,0,6,50,1,0,0,0,8,55,1,0,0,0,10,58,1,0,0,
-0,12,73,1,0,0,0,14,92,1,0,0,0,16,114,1,0,0,0,18,19,3,16,8,0,19,20,5,0,0,
-1,20,1,1,0,0,0,21,22,3,4,2,0,22,23,5,3,0,0,23,25,3,6,3,0,24,26,5,11,0,0,
-25,24,1,0,0,0,26,27,1,0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,3,1,0,0,0,29,
-31,5,1,0,0,30,29,1,0,0,0,31,32,1,0,0,0,32,33,1,0,0,0,32,30,1,0,0,0,33,42,
-1,0,0,0,34,36,5,2,0,0,35,37,5,1,0,0,36,35,1,0,0,0,37,38,1,0,0,0,38,39,1,
-0,0,0,38,36,1,0,0,0,39,41,1,0,0,0,40,34,1,0,0,0,41,44,1,0,0,0,42,40,1,0,
-0,0,42,43,1,0,0,0,43,5,1,0,0,0,44,42,1,0,0,0,45,51,3,16,8,0,46,51,3,8,4,
-0,47,51,3,10,5,0,48,51,3,12,6,0,49,51,3,14,7,0,50,45,1,0,0,0,50,46,1,0,0,
-0,50,47,1,0,0,0,50,48,1,0,0,0,50,49,1,0,0,0,51,7,1,0,0,0,52,54,8,0,0,0,53,
-52,1,0,0,0,54,57,1,0,0,0,55,53,1,0,0,0,55,56,1,0,0,0,56,9,1,0,0,0,57,55,
-1,0,0,0,58,60,5,4,0,0,59,61,5,11,0,0,60,59,1,0,0,0,61,62,1,0,0,0,62,60,1,
-0,0,0,62,63,1,0,0,0,63,67,1,0,0,0,64,65,3,8,4,0,65,66,5,11,0,0,66,68,1,0,
-0,0,67,64,1,0,0,0,68,69,1,0,0,0,69,70,1,0,0,0,69,67,1,0,0,0,70,71,1,0,0,
-0,71,72,5,4,0,0,72,11,1,0,0,0,73,75,5,7,0,0,74,76,5,11,0,0,75,74,1,0,0,0,
-76,77,1,0,0,0,77,75,1,0,0,0,77,78,1,0,0,0,78,87,1,0,0,0,79,81,3,8,4,0,80,
-82,5,11,0,0,81,80,1,0,0,0,82,83,1,0,0,0,83,81,1,0,0,0,83,84,1,0,0,0,84,86,
-1,0,0,0,85,79,1,0,0,0,86,89,1,0,0,0,87,85,1,0,0,0,87,88,1,0,0,0,88,90,1,
-0,0,0,89,87,1,0,0,0,90,91,5,8,0,0,91,13,1,0,0,0,92,94,5,9,0,0,93,95,5,11,
-0,0,94,93,1,0,0,0,95,96,1,0,0,0,96,94,1,0,0,0,96,97,1,0,0,0,97,106,1,0,0,
-0,98,100,3,16,8,0,99,101,5,11,0,0,100,99,1,0,0,0,101,102,1,0,0,0,102,100,
-1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,104,98,1,0,0,0,105,108,1,0,0,0,106,
-104,1,0,0,0,106,107,1,0,0,0,107,109,1,0,0,0,108,106,1,0,0,0,109,110,5,10,
-0,0,110,15,1,0,0,0,111,113,5,11,0,0,112,111,1,0,0,0,113,116,1,0,0,0,114,
-112,1,0,0,0,114,115,1,0,0,0,115,117,1,0,0,0,116,114,1,0,0,0,117,118,3,4,
-2,0,118,120,5,5,0,0,119,121,5,11,0,0,120,119,1,0,0,0,121,122,1,0,0,0,122,
-120,1,0,0,0,122,123,1,0,0,0,123,127,1,0,0,0,124,126,3,2,1,0,125,124,1,0,
-0,0,126,129,1,0,0,0,127,125,1,0,0,0,127,128,1,0,0,0,128,130,1,0,0,0,129,
-127,1,0,0,0,130,134,5,6,0,0,131,133,5,11,0,0,132,131,1,0,0,0,133,136,1,0,
-0,0,134,132,1,0,0,0,134,135,1,0,0,0,135,17,1,0,0,0,136,134,1,0,0,0,18,27,
-32,38,42,50,55,62,69,77,83,87,96,102,106,114,122,127,134];
+const serializedATN = [4,1,21,183,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
+4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,1,0,5,0,26,
+8,0,10,0,12,0,29,9,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,4,1,38,8,1,11,1,12,1,39,
+1,2,4,2,43,8,2,11,2,12,2,44,1,2,1,2,4,2,49,8,2,11,2,12,2,50,5,2,53,8,2,10,
+2,12,2,56,9,2,1,3,1,3,1,3,1,3,1,3,3,3,63,8,3,1,4,1,4,1,4,4,4,68,8,4,11,4,
+12,4,69,1,5,5,5,73,8,5,10,5,12,5,76,9,5,1,6,1,6,4,6,80,8,6,11,6,12,6,81,
+1,6,1,6,1,6,4,6,87,8,6,11,6,12,6,88,1,6,1,6,1,7,1,7,4,7,95,8,7,11,7,12,7,
+96,1,7,1,7,4,7,101,8,7,11,7,12,7,102,5,7,105,8,7,10,7,12,7,108,9,7,1,7,1,
+7,1,8,1,8,4,8,114,8,8,11,8,12,8,115,1,8,1,8,4,8,120,8,8,11,8,12,8,121,5,
+8,124,8,8,10,8,12,8,127,9,8,1,8,1,8,1,9,5,9,132,8,9,10,9,12,9,135,9,9,1,
+9,1,9,1,9,4,9,140,8,9,11,9,12,9,141,1,9,5,9,145,8,9,10,9,12,9,148,9,9,1,
+9,1,9,5,9,152,8,9,10,9,12,9,155,9,9,1,10,1,10,1,10,3,10,160,8,10,1,10,1,
+10,3,10,164,8,10,1,10,5,10,167,8,10,10,10,12,10,170,9,10,1,10,1,10,3,10,
+174,8,10,1,10,1,10,1,11,4,11,179,8,11,11,11,12,11,180,1,11,3,44,50,88,0,
+12,0,2,4,6,8,10,12,14,16,18,20,22,0,2,1,0,12,12,2,0,2,2,16,16,198,0,27,1,
+0,0,0,2,33,1,0,0,0,4,42,1,0,0,0,6,62,1,0,0,0,8,64,1,0,0,0,10,74,1,0,0,0,
+12,77,1,0,0,0,14,92,1,0,0,0,16,111,1,0,0,0,18,133,1,0,0,0,20,156,1,0,0,0,
+22,178,1,0,0,0,24,26,3,8,4,0,25,24,1,0,0,0,26,29,1,0,0,0,27,25,1,0,0,0,27,
+28,1,0,0,0,28,30,1,0,0,0,29,27,1,0,0,0,30,31,3,18,9,0,31,32,5,0,0,1,32,1,
+1,0,0,0,33,34,3,4,2,0,34,35,5,4,0,0,35,37,3,6,3,0,36,38,5,12,0,0,37,36,1,
+0,0,0,38,39,1,0,0,0,39,37,1,0,0,0,39,40,1,0,0,0,40,3,1,0,0,0,41,43,5,2,0,
+0,42,41,1,0,0,0,43,44,1,0,0,0,44,45,1,0,0,0,44,42,1,0,0,0,45,54,1,0,0,0,
+46,48,5,3,0,0,47,49,5,2,0,0,48,47,1,0,0,0,49,50,1,0,0,0,50,51,1,0,0,0,50,
+48,1,0,0,0,51,53,1,0,0,0,52,46,1,0,0,0,53,56,1,0,0,0,54,52,1,0,0,0,54,55,
+1,0,0,0,55,5,1,0,0,0,56,54,1,0,0,0,57,63,3,18,9,0,58,63,3,10,5,0,59,63,3,
+12,6,0,60,63,3,14,7,0,61,63,3,16,8,0,62,57,1,0,0,0,62,58,1,0,0,0,62,59,1,
+0,0,0,62,60,1,0,0,0,62,61,1,0,0,0,63,7,1,0,0,0,64,65,5,1,0,0,65,67,3,20,
+10,0,66,68,5,12,0,0,67,66,1,0,0,0,68,69,1,0,0,0,69,67,1,0,0,0,69,70,1,0,
+0,0,70,9,1,0,0,0,71,73,8,0,0,0,72,71,1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,
+74,75,1,0,0,0,75,11,1,0,0,0,76,74,1,0,0,0,77,79,5,5,0,0,78,80,5,12,0,0,79,
+78,1,0,0,0,80,81,1,0,0,0,81,79,1,0,0,0,81,82,1,0,0,0,82,86,1,0,0,0,83,84,
+3,10,5,0,84,85,5,12,0,0,85,87,1,0,0,0,86,83,1,0,0,0,87,88,1,0,0,0,88,89,
+1,0,0,0,88,86,1,0,0,0,89,90,1,0,0,0,90,91,5,5,0,0,91,13,1,0,0,0,92,94,5,
+8,0,0,93,95,5,12,0,0,94,93,1,0,0,0,95,96,1,0,0,0,96,94,1,0,0,0,96,97,1,0,
+0,0,97,106,1,0,0,0,98,100,3,10,5,0,99,101,5,12,0,0,100,99,1,0,0,0,101,102,
+1,0,0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,104,98,1,0,0,0,105,
+108,1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,109,1,0,0,0,108,106,1,0,
+0,0,109,110,5,9,0,0,110,15,1,0,0,0,111,113,5,10,0,0,112,114,5,12,0,0,113,
+112,1,0,0,0,114,115,1,0,0,0,115,113,1,0,0,0,115,116,1,0,0,0,116,125,1,0,
+0,0,117,119,3,18,9,0,118,120,5,12,0,0,119,118,1,0,0,0,120,121,1,0,0,0,121,
+119,1,0,0,0,121,122,1,0,0,0,122,124,1,0,0,0,123,117,1,0,0,0,124,127,1,0,
+0,0,125,123,1,0,0,0,125,126,1,0,0,0,126,128,1,0,0,0,127,125,1,0,0,0,128,
+129,5,11,0,0,129,17,1,0,0,0,130,132,5,12,0,0,131,130,1,0,0,0,132,135,1,0,
+0,0,133,131,1,0,0,0,133,134,1,0,0,0,134,136,1,0,0,0,135,133,1,0,0,0,136,
+137,3,4,2,0,137,139,5,6,0,0,138,140,5,12,0,0,139,138,1,0,0,0,140,141,1,0,
+0,0,141,139,1,0,0,0,141,142,1,0,0,0,142,146,1,0,0,0,143,145,3,2,1,0,144,
+143,1,0,0,0,145,148,1,0,0,0,146,144,1,0,0,0,146,147,1,0,0,0,147,149,1,0,
+0,0,148,146,1,0,0,0,149,153,5,7,0,0,150,152,5,12,0,0,151,150,1,0,0,0,152,
+155,1,0,0,0,153,151,1,0,0,0,153,154,1,0,0,0,154,19,1,0,0,0,155,153,1,0,0,
+0,156,159,5,15,0,0,157,158,5,13,0,0,158,160,5,14,0,0,159,157,1,0,0,0,159,
+160,1,0,0,0,160,168,1,0,0,0,161,164,3,22,11,0,162,164,5,13,0,0,163,161,1,
+0,0,0,163,162,1,0,0,0,164,165,1,0,0,0,165,167,5,14,0,0,166,163,1,0,0,0,167,
+170,1,0,0,0,168,166,1,0,0,0,168,169,1,0,0,0,169,171,1,0,0,0,170,168,1,0,
+0,0,171,173,3,22,11,0,172,174,5,17,0,0,173,172,1,0,0,0,173,174,1,0,0,0,174,
+175,1,0,0,0,175,176,5,15,0,0,176,21,1,0,0,0,177,179,7,1,0,0,178,177,1,0,
+0,0,179,180,1,0,0,0,180,178,1,0,0,0,180,181,1,0,0,0,181,23,1,0,0,0,25,27,
+39,44,50,54,62,69,74,81,88,96,102,106,115,121,125,133,141,146,153,159,163,
+168,173,180];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -55,16 +71,19 @@ const sharedContextCache = new antlr4.atn.PredictionContextCache();
 export default class nfmlParser extends antlr4.Parser {
 
     static grammarFileName = "nfml.g4";
-    static literalNames = [ null, null, "'-'", "':'", "'---'", "'{'", "'}'", 
-                            "'['", "']'", "'[['", "']]'" ];
-    static symbolicNames = [ null, "ID_LETTER", "ID_SEPARATOR", "COLON", 
+    static literalNames = [ null, "'import'", null, "'-'", "':'", "'---'", 
+                            "'{'", "'}'", "'['", "']'", "'[['", "']]'", 
+                            null, null, null, "'''", null, "'.nfml'" ];
+    static symbolicNames = [ null, null, "ID_LETTER", "ID_SEPARATOR", "COLON", 
                              "MULTILINE_STRING_DELIMETER", "OBJECT_OPEN", 
                              "OBJECT_CLOSE", "LIST_OPEN", "LIST_CLOSE", 
-                             "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "COMMENT", 
-                             "COMMENT_AT_BEGINNING_OF_FILE", "WHITESPACE", 
-                             "UNICODE_SET" ];
-    static ruleNames = [ "nfml", "pair", "identifier", "value", "string", 
-                         "multiline_string", "list", "array", "object" ];
+                             "ARRAY_OPEN", "ARRAY_CLOSE", "NEWLINE", "DOT_SEGMENT", 
+                             "PATH_SEPARATOR", "SINGLE_QUOTE", "FILENAME_CHAR", 
+                             "EXTENSION", "COMMENT", "COMMENT_AT_BEGINNING_OF_FILE", 
+                             "WHITESPACE", "UNICODE_SET" ];
+    static ruleNames = [ "nfml", "pair", "identifier", "value", "importStatement", 
+                         "string", "multiline_string", "list", "array", 
+                         "object", "path", "filename" ];
 
     constructor(input) {
         super(input);
@@ -79,11 +98,22 @@ export default class nfmlParser extends antlr4.Parser {
 	nfml() {
 	    let localctx = new NfmlContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 0, nfmlParser.RULE_nfml);
+	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 18;
+	        this.state = 27;
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        while(_la===1) {
+	            this.state = 24;
+	            this.importStatement();
+	            this.state = 29;
+	            this._errHandler.sync(this);
+	            _la = this._input.LA(1);
+	        }
+	        this.state = 30;
 	        this.object();
-	        this.state = 19;
+	        this.state = 31;
 	        this.match(nfmlParser.EOF);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -107,22 +137,22 @@ export default class nfmlParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 21;
+	        this.state = 33;
 	        this.identifier();
-	        this.state = 22;
+	        this.state = 34;
 	        this.match(nfmlParser.COLON);
-	        this.state = 23;
+	        this.state = 35;
 	        this.value();
-	        this.state = 25; 
+	        this.state = 37; 
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        do {
-	            this.state = 24;
+	            this.state = 36;
 	            this.match(nfmlParser.NEWLINE);
-	            this.state = 27; 
+	            this.state = 39; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===11);
+	        } while(_la===12);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -145,45 +175,45 @@ export default class nfmlParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 30; 
+	        this.state = 42; 
 	        this._errHandler.sync(this);
 	        var _alt = 1+1;
 	        do {
 	        	switch (_alt) {
 	        	case 1+1:
-	        		this.state = 29;
+	        		this.state = 41;
 	        		this.match(nfmlParser.ID_LETTER);
 	        		break;
 	        	default:
 	        		throw new antlr4.error.NoViableAltException(this);
 	        	}
-	        	this.state = 32; 
+	        	this.state = 44; 
 	        	this._errHandler.sync(this);
-	        	_alt = this._interp.adaptivePredict(this._input,1, this._ctx);
+	        	_alt = this._interp.adaptivePredict(this._input,2, this._ctx);
 	        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	        this.state = 42;
+	        this.state = 54;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===2) {
-	            this.state = 34;
+	        while(_la===3) {
+	            this.state = 46;
 	            this.match(nfmlParser.ID_SEPARATOR);
-	            this.state = 36; 
+	            this.state = 48; 
 	            this._errHandler.sync(this);
 	            var _alt = 1+1;
 	            do {
 	            	switch (_alt) {
 	            	case 1+1:
-	            		this.state = 35;
+	            		this.state = 47;
 	            		this.match(nfmlParser.ID_LETTER);
 	            		break;
 	            	default:
 	            		throw new antlr4.error.NoViableAltException(this);
 	            	}
-	            	this.state = 38; 
+	            	this.state = 50; 
 	            	this._errHandler.sync(this);
-	            	_alt = this._interp.adaptivePredict(this._input,2, this._ctx);
+	            	_alt = this._interp.adaptivePredict(this._input,3, this._ctx);
 	            } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	            this.state = 44;
+	            this.state = 56;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
@@ -207,37 +237,37 @@ export default class nfmlParser extends antlr4.Parser {
 	    let localctx = new ValueContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 6, nfmlParser.RULE_value);
 	    try {
-	        this.state = 50;
+	        this.state = 62;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,4,this._ctx);
+	        var la_ = this._interp.adaptivePredict(this._input,5,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 45;
+	            this.state = 57;
 	            this.object();
 	            break;
 
 	        case 2:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 46;
+	            this.state = 58;
 	            this.string();
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 47;
+	            this.state = 59;
 	            this.multiline_string();
 	            break;
 
 	        case 4:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 48;
+	            this.state = 60;
 	            this.list();
 	            break;
 
 	        case 5:
 	            this.enterOuterAlt(localctx, 5);
-	            this.state = 49;
+	            this.state = 61;
 	            this.array();
 	            break;
 
@@ -258,26 +288,67 @@ export default class nfmlParser extends antlr4.Parser {
 
 
 
+	importStatement() {
+	    let localctx = new ImportStatementContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 8, nfmlParser.RULE_importStatement);
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 64;
+	        this.match(nfmlParser.T__0);
+	        this.state = 65;
+	        this.path();
+	        this.state = 67; 
+	        this._errHandler.sync(this);
+	        var _alt = 1;
+	        do {
+	        	switch (_alt) {
+	        	case 1:
+	        		this.state = 66;
+	        		this.match(nfmlParser.NEWLINE);
+	        		break;
+	        	default:
+	        		throw new antlr4.error.NoViableAltException(this);
+	        	}
+	        	this.state = 69; 
+	        	this._errHandler.sync(this);
+	        	_alt = this._interp.adaptivePredict(this._input,6, this._ctx);
+	        } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
 	string() {
 	    let localctx = new StringContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, nfmlParser.RULE_string);
+	    this.enterRule(localctx, 10, nfmlParser.RULE_string);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 55;
+	        this.state = 74;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 63486) !== 0)) {
-	            this.state = 52;
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4190206) !== 0)) {
+	            this.state = 71;
 	            _la = this._input.LA(1);
-	            if(_la<=0 || _la===11) {
+	            if(_la<=0 || _la===12) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
 	            	this._errHandler.reportMatch(this);
 	                this.consume();
 	            }
-	            this.state = 57;
+	            this.state = 76;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
@@ -299,46 +370,46 @@ export default class nfmlParser extends antlr4.Parser {
 
 	multiline_string() {
 	    let localctx = new Multiline_stringContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 10, nfmlParser.RULE_multiline_string);
+	    this.enterRule(localctx, 12, nfmlParser.RULE_multiline_string);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 58;
+	        this.state = 77;
 	        this.match(nfmlParser.MULTILINE_STRING_DELIMETER);
-	        this.state = 60; 
+	        this.state = 79; 
 	        this._errHandler.sync(this);
 	        var _alt = 1;
 	        do {
 	        	switch (_alt) {
 	        	case 1:
-	        		this.state = 59;
+	        		this.state = 78;
 	        		this.match(nfmlParser.NEWLINE);
 	        		break;
 	        	default:
 	        		throw new antlr4.error.NoViableAltException(this);
 	        	}
-	        	this.state = 62; 
+	        	this.state = 81; 
 	        	this._errHandler.sync(this);
-	        	_alt = this._interp.adaptivePredict(this._input,6, this._ctx);
+	        	_alt = this._interp.adaptivePredict(this._input,8, this._ctx);
 	        } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	        this.state = 67; 
+	        this.state = 86; 
 	        this._errHandler.sync(this);
 	        var _alt = 1+1;
 	        do {
 	        	switch (_alt) {
 	        	case 1+1:
-	        		this.state = 64;
+	        		this.state = 83;
 	        		this.string();
-	        		this.state = 65;
+	        		this.state = 84;
 	        		this.match(nfmlParser.NEWLINE);
 	        		break;
 	        	default:
 	        		throw new antlr4.error.NoViableAltException(this);
 	        	}
-	        	this.state = 69; 
+	        	this.state = 88; 
 	        	this._errHandler.sync(this);
-	        	_alt = this._interp.adaptivePredict(this._input,7, this._ctx);
+	        	_alt = this._interp.adaptivePredict(this._input,9, this._ctx);
 	        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	        this.state = 71;
+	        this.state = 90;
 	        this.match(nfmlParser.MULTILINE_STRING_DELIMETER);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -358,57 +429,57 @@ export default class nfmlParser extends antlr4.Parser {
 
 	list() {
 	    let localctx = new ListContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 12, nfmlParser.RULE_list);
+	    this.enterRule(localctx, 14, nfmlParser.RULE_list);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 73;
+	        this.state = 92;
 	        this.match(nfmlParser.LIST_OPEN);
-	        this.state = 75; 
+	        this.state = 94; 
 	        this._errHandler.sync(this);
 	        var _alt = 1;
 	        do {
 	        	switch (_alt) {
 	        	case 1:
-	        		this.state = 74;
+	        		this.state = 93;
 	        		this.match(nfmlParser.NEWLINE);
 	        		break;
 	        	default:
 	        		throw new antlr4.error.NoViableAltException(this);
 	        	}
-	        	this.state = 77; 
+	        	this.state = 96; 
 	        	this._errHandler.sync(this);
-	        	_alt = this._interp.adaptivePredict(this._input,8, this._ctx);
+	        	_alt = this._interp.adaptivePredict(this._input,10, this._ctx);
 	        } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	        this.state = 87;
+	        this.state = 106;
 	        this._errHandler.sync(this);
-	        var _alt = this._interp.adaptivePredict(this._input,10,this._ctx)
+	        var _alt = this._interp.adaptivePredict(this._input,12,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
-	                this.state = 79;
+	                this.state = 98;
 	                this.string();
-	                this.state = 81; 
+	                this.state = 100; 
 	                this._errHandler.sync(this);
 	                var _alt = 1;
 	                do {
 	                	switch (_alt) {
 	                	case 1:
-	                		this.state = 80;
+	                		this.state = 99;
 	                		this.match(nfmlParser.NEWLINE);
 	                		break;
 	                	default:
 	                		throw new antlr4.error.NoViableAltException(this);
 	                	}
-	                	this.state = 83; 
+	                	this.state = 102; 
 	                	this._errHandler.sync(this);
-	                	_alt = this._interp.adaptivePredict(this._input,9, this._ctx);
+	                	_alt = this._interp.adaptivePredict(this._input,11, this._ctx);
 	                } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER ); 
 	            }
-	            this.state = 89;
+	            this.state = 108;
 	            this._errHandler.sync(this);
-	            _alt = this._interp.adaptivePredict(this._input,10,this._ctx);
+	            _alt = this._interp.adaptivePredict(this._input,12,this._ctx);
 	        }
 
-	        this.state = 90;
+	        this.state = 109;
 	        this.match(nfmlParser.LIST_CLOSE);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -428,55 +499,55 @@ export default class nfmlParser extends antlr4.Parser {
 
 	array() {
 	    let localctx = new ArrayContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 14, nfmlParser.RULE_array);
+	    this.enterRule(localctx, 16, nfmlParser.RULE_array);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 92;
+	        this.state = 111;
 	        this.match(nfmlParser.ARRAY_OPEN);
-	        this.state = 94; 
+	        this.state = 113; 
 	        this._errHandler.sync(this);
 	        var _alt = 1;
 	        do {
 	        	switch (_alt) {
 	        	case 1:
-	        		this.state = 93;
+	        		this.state = 112;
 	        		this.match(nfmlParser.NEWLINE);
 	        		break;
 	        	default:
 	        		throw new antlr4.error.NoViableAltException(this);
 	        	}
-	        	this.state = 96; 
+	        	this.state = 115; 
 	        	this._errHandler.sync(this);
-	        	_alt = this._interp.adaptivePredict(this._input,11, this._ctx);
+	        	_alt = this._interp.adaptivePredict(this._input,13, this._ctx);
 	        } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	        this.state = 106;
+	        this.state = 125;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===1 || _la===11) {
-	            this.state = 98;
+	        while(_la===2 || _la===12) {
+	            this.state = 117;
 	            this.object();
-	            this.state = 100; 
+	            this.state = 119; 
 	            this._errHandler.sync(this);
 	            var _alt = 1;
 	            do {
 	            	switch (_alt) {
 	            	case 1:
-	            		this.state = 99;
+	            		this.state = 118;
 	            		this.match(nfmlParser.NEWLINE);
 	            		break;
 	            	default:
 	            		throw new antlr4.error.NoViableAltException(this);
 	            	}
-	            	this.state = 102; 
+	            	this.state = 121; 
 	            	this._errHandler.sync(this);
-	            	_alt = this._interp.adaptivePredict(this._input,12, this._ctx);
+	            	_alt = this._interp.adaptivePredict(this._input,14, this._ctx);
 	            } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-	            this.state = 108;
+	            this.state = 127;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 109;
+	        this.state = 128;
 	        this.match(nfmlParser.ARRAY_CLOSE);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -496,59 +567,172 @@ export default class nfmlParser extends antlr4.Parser {
 
 	object() {
 	    let localctx = new ObjectContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 16, nfmlParser.RULE_object);
+	    this.enterRule(localctx, 18, nfmlParser.RULE_object);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 114;
+	        this.state = 133;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===11) {
-	            this.state = 111;
+	        while(_la===12) {
+	            this.state = 130;
 	            this.match(nfmlParser.NEWLINE);
-	            this.state = 116;
+	            this.state = 135;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 117;
+	        this.state = 136;
 	        this.identifier();
-	        this.state = 118;
+	        this.state = 137;
 	        this.match(nfmlParser.OBJECT_OPEN);
-	        this.state = 120; 
+	        this.state = 139; 
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        do {
-	            this.state = 119;
+	            this.state = 138;
 	            this.match(nfmlParser.NEWLINE);
-	            this.state = 122; 
+	            this.state = 141; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===11);
-	        this.state = 127;
+	        } while(_la===12);
+	        this.state = 146;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===1) {
-	            this.state = 124;
+	        while(_la===2) {
+	            this.state = 143;
 	            this.pair();
-	            this.state = 129;
+	            this.state = 148;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 130;
+	        this.state = 149;
 	        this.match(nfmlParser.OBJECT_CLOSE);
-	        this.state = 134;
+	        this.state = 153;
 	        this._errHandler.sync(this);
-	        var _alt = this._interp.adaptivePredict(this._input,17,this._ctx)
+	        var _alt = this._interp.adaptivePredict(this._input,19,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
-	                this.state = 131;
+	                this.state = 150;
 	                this.match(nfmlParser.NEWLINE); 
 	            }
-	            this.state = 136;
+	            this.state = 155;
 	            this._errHandler.sync(this);
-	            _alt = this._interp.adaptivePredict(this._input,17,this._ctx);
+	            _alt = this._interp.adaptivePredict(this._input,19,this._ctx);
 	        }
 
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	path() {
+	    let localctx = new PathContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 20, nfmlParser.RULE_path);
+	    var _la = 0;
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 156;
+	        this.match(nfmlParser.SINGLE_QUOTE);
+	        this.state = 159;
+	        this._errHandler.sync(this);
+	        var la_ = this._interp.adaptivePredict(this._input,20,this._ctx);
+	        if(la_===1) {
+	            this.state = 157;
+	            this.match(nfmlParser.DOT_SEGMENT);
+	            this.state = 158;
+	            this.match(nfmlParser.PATH_SEPARATOR);
+
+	        }
+	        this.state = 168;
+	        this._errHandler.sync(this);
+	        var _alt = this._interp.adaptivePredict(this._input,22,this._ctx)
+	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+	            if(_alt===1) {
+	                this.state = 163;
+	                this._errHandler.sync(this);
+	                switch(this._input.LA(1)) {
+	                case 2:
+	                case 16:
+	                    this.state = 161;
+	                    this.filename();
+	                    break;
+	                case 13:
+	                    this.state = 162;
+	                    this.match(nfmlParser.DOT_SEGMENT);
+	                    break;
+	                default:
+	                    throw new antlr4.error.NoViableAltException(this);
+	                }
+	                this.state = 165;
+	                this.match(nfmlParser.PATH_SEPARATOR); 
+	            }
+	            this.state = 170;
+	            this._errHandler.sync(this);
+	            _alt = this._interp.adaptivePredict(this._input,22,this._ctx);
+	        }
+
+	        this.state = 171;
+	        this.filename();
+	        this.state = 173;
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        if(_la===17) {
+	            this.state = 172;
+	            this.match(nfmlParser.EXTENSION);
+	        }
+
+	        this.state = 175;
+	        this.match(nfmlParser.SINGLE_QUOTE);
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	filename() {
+	    let localctx = new FilenameContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 22, nfmlParser.RULE_filename);
+	    var _la = 0;
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 178; 
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        do {
+	            this.state = 177;
+	            _la = this._input.LA(1);
+	            if(!(_la===2 || _la===16)) {
+	            this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this._errHandler.reportMatch(this);
+	                this.consume();
+	            }
+	            this.state = 180; 
+	            this._errHandler.sync(this);
+	            _la = this._input.LA(1);
+	        } while(_la===2 || _la===16);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -567,31 +751,40 @@ export default class nfmlParser extends antlr4.Parser {
 }
 
 nfmlParser.EOF = antlr4.Token.EOF;
-nfmlParser.ID_LETTER = 1;
-nfmlParser.ID_SEPARATOR = 2;
-nfmlParser.COLON = 3;
-nfmlParser.MULTILINE_STRING_DELIMETER = 4;
-nfmlParser.OBJECT_OPEN = 5;
-nfmlParser.OBJECT_CLOSE = 6;
-nfmlParser.LIST_OPEN = 7;
-nfmlParser.LIST_CLOSE = 8;
-nfmlParser.ARRAY_OPEN = 9;
-nfmlParser.ARRAY_CLOSE = 10;
-nfmlParser.NEWLINE = 11;
-nfmlParser.COMMENT = 12;
-nfmlParser.COMMENT_AT_BEGINNING_OF_FILE = 13;
-nfmlParser.WHITESPACE = 14;
-nfmlParser.UNICODE_SET = 15;
+nfmlParser.T__0 = 1;
+nfmlParser.ID_LETTER = 2;
+nfmlParser.ID_SEPARATOR = 3;
+nfmlParser.COLON = 4;
+nfmlParser.MULTILINE_STRING_DELIMETER = 5;
+nfmlParser.OBJECT_OPEN = 6;
+nfmlParser.OBJECT_CLOSE = 7;
+nfmlParser.LIST_OPEN = 8;
+nfmlParser.LIST_CLOSE = 9;
+nfmlParser.ARRAY_OPEN = 10;
+nfmlParser.ARRAY_CLOSE = 11;
+nfmlParser.NEWLINE = 12;
+nfmlParser.DOT_SEGMENT = 13;
+nfmlParser.PATH_SEPARATOR = 14;
+nfmlParser.SINGLE_QUOTE = 15;
+nfmlParser.FILENAME_CHAR = 16;
+nfmlParser.EXTENSION = 17;
+nfmlParser.COMMENT = 18;
+nfmlParser.COMMENT_AT_BEGINNING_OF_FILE = 19;
+nfmlParser.WHITESPACE = 20;
+nfmlParser.UNICODE_SET = 21;
 
 nfmlParser.RULE_nfml = 0;
 nfmlParser.RULE_pair = 1;
 nfmlParser.RULE_identifier = 2;
 nfmlParser.RULE_value = 3;
-nfmlParser.RULE_string = 4;
-nfmlParser.RULE_multiline_string = 5;
-nfmlParser.RULE_list = 6;
-nfmlParser.RULE_array = 7;
-nfmlParser.RULE_object = 8;
+nfmlParser.RULE_importStatement = 4;
+nfmlParser.RULE_string = 5;
+nfmlParser.RULE_multiline_string = 6;
+nfmlParser.RULE_list = 7;
+nfmlParser.RULE_array = 8;
+nfmlParser.RULE_object = 9;
+nfmlParser.RULE_path = 10;
+nfmlParser.RULE_filename = 11;
 
 class NfmlContext extends antlr4.ParserRuleContext {
 
@@ -613,6 +806,17 @@ class NfmlContext extends antlr4.ParserRuleContext {
 
 	EOF() {
 	    return this.getToken(nfmlParser.EOF, 0);
+	};
+
+	importStatement = function(i) {
+	    if(i===undefined) {
+	        i = null;
+	    }
+	    if(i===null) {
+	        return this.getTypedRuleContexts(ImportStatementContext);
+	    } else {
+	        return this.getTypedRuleContext(ImportStatementContext,i);
+	    }
 	};
 
 	enterRule(listener) {
@@ -785,6 +989,53 @@ class ValueContext extends antlr4.ParserRuleContext {
 	exitRule(listener) {
 	    if(listener instanceof nfmlListener ) {
 	        listener.exitValue(this);
+		}
+	}
+
+
+}
+
+
+
+class ImportStatementContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = nfmlParser.RULE_importStatement;
+    }
+
+	path() {
+	    return this.getTypedRuleContext(PathContext,0);
+	};
+
+	NEWLINE = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.NEWLINE);
+	    } else {
+	        return this.getToken(nfmlParser.NEWLINE, i);
+	    }
+	};
+
+
+	enterRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.enterImportStatement(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.exitImportStatement(this);
 		}
 	}
 
@@ -1092,13 +1343,153 @@ class ObjectContext extends antlr4.ParserRuleContext {
 
 
 
+class PathContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = nfmlParser.RULE_path;
+    }
+
+	SINGLE_QUOTE = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.SINGLE_QUOTE);
+	    } else {
+	        return this.getToken(nfmlParser.SINGLE_QUOTE, i);
+	    }
+	};
+
+
+	filename = function(i) {
+	    if(i===undefined) {
+	        i = null;
+	    }
+	    if(i===null) {
+	        return this.getTypedRuleContexts(FilenameContext);
+	    } else {
+	        return this.getTypedRuleContext(FilenameContext,i);
+	    }
+	};
+
+	DOT_SEGMENT = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.DOT_SEGMENT);
+	    } else {
+	        return this.getToken(nfmlParser.DOT_SEGMENT, i);
+	    }
+	};
+
+
+	PATH_SEPARATOR = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.PATH_SEPARATOR);
+	    } else {
+	        return this.getToken(nfmlParser.PATH_SEPARATOR, i);
+	    }
+	};
+
+
+	EXTENSION() {
+	    return this.getToken(nfmlParser.EXTENSION, 0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.enterPath(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.exitPath(this);
+		}
+	}
+
+
+}
+
+
+
+class FilenameContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = nfmlParser.RULE_filename;
+    }
+
+	ID_LETTER = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.ID_LETTER);
+	    } else {
+	        return this.getToken(nfmlParser.ID_LETTER, i);
+	    }
+	};
+
+
+	FILENAME_CHAR = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(nfmlParser.FILENAME_CHAR);
+	    } else {
+	        return this.getToken(nfmlParser.FILENAME_CHAR, i);
+	    }
+	};
+
+
+	enterRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.enterFilename(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof nfmlListener ) {
+	        listener.exitFilename(this);
+		}
+	}
+
+
+}
+
+
+
 
 nfmlParser.NfmlContext = NfmlContext; 
 nfmlParser.PairContext = PairContext; 
 nfmlParser.IdentifierContext = IdentifierContext; 
 nfmlParser.ValueContext = ValueContext; 
+nfmlParser.ImportStatementContext = ImportStatementContext; 
 nfmlParser.StringContext = StringContext; 
 nfmlParser.Multiline_stringContext = Multiline_stringContext; 
 nfmlParser.ListContext = ListContext; 
 nfmlParser.ArrayContext = ArrayContext; 
 nfmlParser.ObjectContext = ObjectContext; 
+nfmlParser.PathContext = PathContext; 
+nfmlParser.FilenameContext = FilenameContext; 

@@ -2,6 +2,7 @@ const FILENAME_MODE = 'mode:file';
 const PLATFORM_MODE = 'mode:platform';
 const OUTPUT_MODE = 'mode:output';
 export const HELP_MODE = 'mode:help';
+export const WATCH_MODE = 'mode:watch';
 
 export const ARGUMENT_MAP = {
     '--file': FILENAME_MODE,
@@ -11,7 +12,9 @@ export const ARGUMENT_MAP = {
     '--output': OUTPUT_MODE,
     '-o': OUTPUT_MODE,
     '--help': HELP_MODE,
-    '-h': HELP_MODE
+    '-h': HELP_MODE,
+    '--watch': WATCH_MODE,
+    '-w': WATCH_MODE
 };
 
 export const MODE_MAP = {
@@ -29,6 +32,8 @@ Usage: node index.js [options]
                         If not specified, the target platform is HTML
     -o, --output        Output file.
                         If not specified, outputs to stdin.
+    -w, --watch         Watch mode.
+                        Enables hot reloading, useful for development.
     -h, --help          Show help.
 
 Author: Dmytro Rekechynskyi

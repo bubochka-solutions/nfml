@@ -33,12 +33,16 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
         .map((module) => module.endsWith('.nfml') ? module : `${module}.nfml`)
         .map((module) => path.resolve(workingDirectory, module));
 
+    let compiledFilePaths = new Set(importPaths);
+
     for (const importPath of importPaths) {
         const subfile = await fs.readFile(importPath, { encoding: 'utf8' });
         const workDir = path.dirname(subfile);
-        const { compiledOutput } = await compile(subfile, workDir, targetPlatform);
+        const { compiledOutput, usedFilePaths } = await compile(subfile, workDir, targetPlatform);
 
-        const elementFilename = importPath.split('/').pop();
+        compiledFilePaths = new Set([...compiledFilePaths, ...usedFilePaths]);
+
+        const elementFilename = path.basename(importPath);
         const elementClass = capitalize(elementFilename.replace('.nfml', ''));
         const placesToInject = findMultipleElements(document, {
             including: {
@@ -52,5 +56,8 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
     }
 
     const contents = await traverseDocument(document, targetPlatform);
-    return { compiledOutput: contents };
+    return {
+        compiledOutput: contents,
+        usedFilePaths: compiledFilePaths
+    };
 };

@@ -1,7 +1,9 @@
 import path from 'path';
 import * as fs from 'fs/promises';
+import { fileURLToPath } from 'url';
 import { compile } from './src/nfml.js';
-import { HELP_MODE, ARGUMENT_MAP, MODE_MAP, HELP_TEXT } from './constants.js';
+import { enableWatcher } from './src/watcher.js';
+import { HELP_MODE, ARGUMENT_MAP, MODE_MAP, HELP_TEXT, WATCH_MODE } from './constants.js';
 
 const fileSystemOptions = {
     encoding: 'utf8'
@@ -29,6 +31,8 @@ const parseArguments = (...inputArguments) => {
 
             if (!argumentMode) {
                 throw new Error(`Argument ${argument} is not expectable`);
+            } else if (argumentMode === WATCH_MODE) {
+                parsedArguments.watchMode = true;
             } else if (argumentMode === HELP_MODE) {
                 parsedArguments.foundHelpArgument = true;
                 break;
@@ -68,7 +72,8 @@ export const processNfml = async ({
 
     const input = await fs.readFile(fullFilePath, fileSystemOptions);
 
-    const { error, compiledOutput } = await compile(input, workDir, platform);
+    const { error, compiledOutput, usedFilePaths } = await compile(input, workDir, platform);
+    usedFilePaths.add(fullFilePath);
 
     if (error) {
         result.error = true;
@@ -81,33 +86,48 @@ export const processNfml = async ({
         await fs.writeFile(outputFilePath, compiledOutput, fileSystemOptions);
         result.message = `The result has been written to file ${outputFile},` +
             ` path: ${outputFilePath}`;
+        result.usedFilePaths = Array.from(usedFilePaths);
     } else {
         result.output = compiledOutput;
+        result.usedFilePaths = Array.from(usedFilePaths);
     }
 
     return result;
 };
 
+const currentModulePath = fileURLToPath(import.meta.url);
+
 // If this is loaded as a main file
-if (import.meta.url.endsWith(process.argv[1])) {
+if (currentModulePath.endsWith(process.argv[1])) {
     // Ignore first two arguments, since they are "node" and "index.js"
     const inputArguments = process.argv.slice(2);
 
     const parsedArguments = parseArguments(...inputArguments);
-    const { foundHelpArgument, filename } = parsedArguments;
+    const { foundHelpArgument, watchMode, filename } = parsedArguments;
 
-    if (foundHelpArgument || !filename) {
-        console.log(HELP_TEXT);
-    } else {
+    const compilationLogic = async () => {
         const result = await processNfml(parsedArguments);
+        const { usedFilePaths } = result;
+        console.log(usedFilePaths);
 
         if (result.error) {
             console.error(result.message);
-            process.exitCode = 1;
+            process.exit(1);
         } else if (result.message) {
             console.log(result.message);
         } else if (result.output) {
             console.log(result.output);
         }
+
+        return { usedFilePaths };
+    };
+
+    if (foundHelpArgument || !filename) {
+        console.log(HELP_TEXT);
+    } else if (watchMode) {
+        const { usedFilePaths } = await compilationLogic();
+        enableWatcher(usedFilePaths, compilationLogic);
+    } else {
+        compilationLogic();
     }
 }

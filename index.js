@@ -69,10 +69,15 @@ export const processNfml = async ({
 
     const fullFilePath = path.isAbsolute(filename) ? filename :
         path.resolve(workDir, filename);
+    const submoduleWorkDir = path.dirname(fullFilePath);
 
     const input = await fs.readFile(fullFilePath, fileSystemOptions);
 
-    const { error, compiledOutput, usedFilePaths } = await compile(input, workDir, platform);
+    const { error, compiledOutput, usedFilePaths } = await compile(
+        input,
+        submoduleWorkDir,
+        platform
+    );
     usedFilePaths.add(fullFilePath);
 
     if (error) {

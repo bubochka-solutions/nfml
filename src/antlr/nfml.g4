@@ -11,7 +11,7 @@ pair: identifier COLON value NEWLINE+;
 
 identifier: ID_LETTER+? (ID_SEPARATOR ID_LETTER+?)*;
 
-value: object | string | multiline_string | list | array;
+value: string | multiline_string | list | array;
 
 importStatement: 'import' path NEWLINE+;
 

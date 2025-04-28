@@ -113,11 +113,13 @@ if (currentModulePath.endsWith(process.argv[1])) {
     const compilationLogic = async () => {
         const result = await processNfml(parsedArguments);
         const { usedFilePaths } = result;
-        console.log(usedFilePaths);
 
         if (result.error) {
             console.error(result.message);
-            process.exit(1);
+
+            if (!watchMode) {
+                process.exit(1);
+            }
         } else if (result.message) {
             console.log(result.message);
         } else if (result.output) {

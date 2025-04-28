@@ -29,6 +29,7 @@ const checkObject = (object, queryObject) => {
 
 const findElementLogic = (object, queryObject, returnImmediately) => {
   const resultStack = [];
+  let singleResult;
 
   // `null` has a type of `object`, so we need to perform check for this
   // thing in first place. JS, thank you so much!
@@ -40,7 +41,8 @@ const findElementLogic = (object, queryObject, returnImmediately) => {
     const result = findElementLogic(element, queryObject, returnImmediately);
 
     if (returnImmediately && result !== null) {
-      return result;
+      singleResult = result;
+      return;
     }
 
     resultStack.push(...result);
@@ -50,6 +52,10 @@ const findElementLogic = (object, queryObject, returnImmediately) => {
     for (const element of object) {
       if (typeof element === 'object') {
         performDeeperSearch(element);
+
+        if (singleResult) {
+          return singleResult;
+        }
       }
     }
   } else if (typeof object === 'object') {
@@ -67,6 +73,10 @@ const findElementLogic = (object, queryObject, returnImmediately) => {
 
     for (const element of objectsToExamine) {
       performDeeperSearch(element);
+
+      if (singleResult) {
+        return singleResult;
+      }
     }
   }
 

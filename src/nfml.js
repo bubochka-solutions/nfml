@@ -38,7 +38,11 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
     for (const importPath of importPaths) {
         const subfile = await fs.readFile(importPath, { encoding: 'utf8' });
         const workDir = path.dirname(importPath);
-        const { compiledOutput, usedFilePaths } = await compile(subfile, workDir, targetPlatform);
+        const { compiledOutput, usedFilePaths, error } = await compile(subfile, workDir, targetPlatform);
+
+        if (error) {
+            return { error: true };
+        }
 
         compiledFilePaths = new Set([...compiledFilePaths, ...usedFilePaths]);
 

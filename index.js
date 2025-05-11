@@ -64,11 +64,8 @@ export const processNfml = async ({
     }
 
     const fallbackWorkDir = currentDirectory || process.cwd();
-    const workDir = path.isAbsolute(filename) ? path.dirname(filename) :
-        fallbackWorkDir;
-
     const fullFilePath = path.isAbsolute(filename) ? filename :
-        path.resolve(workDir, filename);
+        path.resolve(fallbackWorkDir, filename);
     const submoduleWorkDir = path.dirname(fullFilePath);
 
     const input = await fs.readFile(fullFilePath, fileSystemOptions);
@@ -78,7 +75,7 @@ export const processNfml = async ({
         submoduleWorkDir,
         platform
     );
-    usedFilePaths.add(fullFilePath);
+    result.usedFilePaths = [fullFilePath, ...usedFilePaths];
 
     if (error) {
         result.error = true;
@@ -91,10 +88,8 @@ export const processNfml = async ({
         await fs.writeFile(outputFilePath, compiledOutput, fileSystemOptions);
         result.message = `The result has been written to file ${outputFile},` +
             ` path: ${outputFilePath}`;
-        result.usedFilePaths = Array.from(usedFilePaths);
     } else {
         result.output = compiledOutput;
-        result.usedFilePaths = Array.from(usedFilePaths);
     }
 
     return result;
@@ -110,14 +105,14 @@ if (currentModulePath.endsWith(process.argv[1])) {
     const parsedArguments = parseArguments(...inputArguments);
     const { foundHelpArgument, watchMode, filename } = parsedArguments;
 
-    const compilationLogic = async () => {
+    const compilationLogic = async (ignoreError) => {
         const result = await processNfml(parsedArguments);
         const { usedFilePaths } = result;
 
         if (result.error) {
             console.error(result.message);
 
-            if (!watchMode) {
+            if (!ignoreError) {
                 process.exit(1);
             }
         } else if (result.message) {
@@ -133,7 +128,10 @@ if (currentModulePath.endsWith(process.argv[1])) {
         console.log(HELP_TEXT);
     } else if (watchMode) {
         const { usedFilePaths } = await compilationLogic();
-        enableWatcher(usedFilePaths, compilationLogic);
+
+        enableWatcher(usedFilePaths, () => {
+            compilationLogic(true);
+        });
     } else {
         compilationLogic();
     }

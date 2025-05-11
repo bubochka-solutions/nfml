@@ -1,2 +1,3 @@
-ComboBox {identifier} = new ComboBox();
+ComboBox<String> {identifier} = new ComboBox<>();
+{identifier}.setPromptText("{title}");
 {{{identifier}.getItems().add("{label}");}}

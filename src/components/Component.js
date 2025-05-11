@@ -16,7 +16,7 @@ export default class Component {
         }
 
         this.id = data.id;
-        this.title = data.title;
+        this.title = data.title || '';
         this.targetPlatform = targetPlatform;
     }
 
@@ -32,6 +32,7 @@ export default class Component {
                 if (compiledOutput) {
                     const element = new Component({}, this.targetPlatform);
                     element.content = compiledOutput;
+                    element.variableName = data.variableName;
 
                     result.push(element);
                     continue;

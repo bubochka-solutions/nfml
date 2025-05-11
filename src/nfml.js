@@ -21,7 +21,10 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
     tree.accept(new Visitor());
 
     if (tree.parser._syntaxErrors > 0) {
-        return { error: true };
+        return {
+            error: true,
+            usedFilePaths: []
+        };
     }
 
     const listener = new Listener();
@@ -36,15 +39,34 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
     let compiledFilePaths = new Set(importPaths);
 
     for (const importPath of importPaths) {
-        const subfile = await fs.readFile(importPath, { encoding: 'utf8' });
-        const workDir = path.dirname(importPath);
-        const { compiledOutput, usedFilePaths, error } = await compile(subfile, workDir, targetPlatform);
+        let subfile;
 
-        if (error) {
-            return { error: true };
+        try {
+            subfile = await fs.readFile(importPath, { encoding: 'utf8' });
+        } catch (error) {
+            console.error(`This file is inaccessible: ${importPath}`);
+            return {
+                error: true,
+                usedFilePaths: compiledFilePaths
+            };
         }
 
+        const workDir = path.dirname(importPath);
+        const {
+            compiledOutput,
+            usedFilePaths,
+            variableName,
+            error
+        } = await compile(subfile, workDir, targetPlatform);
+
         compiledFilePaths = new Set([...compiledFilePaths, ...usedFilePaths]);
+
+        if (error) {
+            return {
+                error: true,
+                usedFilePaths: compiledFilePaths
+            };
+        }
 
         const elementFilename = path.basename(importPath);
         const elementClass = capitalize(elementFilename.replace('.nfml', ''));
@@ -56,12 +78,24 @@ export const compile = async (input, workingDirectory, targetPlatform) => {
 
         for (const placeToInject of placesToInject) {
             placeToInject.compiledOutput = compiledOutput;
+            placeToInject.variableName = variableName;
         }
     }
 
-    const contents = await traverseDocument(document, targetPlatform);
-    return {
-        compiledOutput: contents,
-        usedFilePaths: compiledFilePaths
-    };
+    try {
+        const { content, variableName } =
+            await traverseDocument(document, targetPlatform);
+
+        return {
+            compiledOutput: content,
+            usedFilePaths: compiledFilePaths,
+            variableName: variableName
+        };
+    } catch (error) {
+        console.error(error);
+        return {
+            error: true,
+            usedFilePaths: compiledFilePaths
+        }
+    }
 };

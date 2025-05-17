@@ -128,10 +128,7 @@ if (currentModulePath.endsWith(process.argv[1])) {
         console.log(HELP_TEXT);
     } else if (watchMode) {
         const { usedFilePaths } = await compilationLogic();
-
-        enableWatcher(usedFilePaths, () => {
-            compilationLogic(true);
-        });
+        enableWatcher(usedFilePaths, () => compilationLogic(true));
     } else {
         compilationLogic();
     }

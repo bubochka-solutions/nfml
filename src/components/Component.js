@@ -16,6 +16,11 @@ export default class Component {
         }
 
         this.id = data.id;
+
+        if (this.id && targetPlatform === this.PLATFORM_MAP.java) {
+            this.id = this.id.replaceAll('-', '_');
+        }
+
         this.title = data.title || '';
         this.targetPlatform = targetPlatform;
     }
